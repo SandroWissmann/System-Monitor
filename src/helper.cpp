@@ -30,7 +30,7 @@ template int ReadValueFromFile(const std::string& filename,
 template long ReadValueFromFile(const std::string& filename,
                                 const std::string& key);
 template float ReadValueFromFile(const std::string& filename,
-                                  const std::string& key);
+                                 const std::string& key);
 template double ReadValueFromFile(const std::string& filename,
                                   const std::string& key);
 
@@ -45,16 +45,16 @@ std::optional<ValueType> ReadValueFromLine(const std::string& line,
         ist >> value;
 
         if (IsNumber<ValueType>(value)) {
-            if(std::is_same<ValueType, int>::value) {
+            if (std::is_same<ValueType, int>::value) {
                 return {std::stoi(value)};
             }
-            if(std::is_same<ValueType, long>::value) {
+            if (std::is_same<ValueType, long>::value) {
                 return {std::stol(value)};
             }
-            if(std::is_same<ValueType, float>::value) {
+            if (std::is_same<ValueType, float>::value) {
                 return {std::stof(value)};
             }
-            if(std::is_same<ValueType, double>::value) {
+            if (std::is_same<ValueType, double>::value) {
                 return {std::stod(value)};
             }
         }
@@ -66,8 +66,8 @@ template std::optional<int> ReadValueFromLine(const std::string& line,
                                               const std::string& expectedKey);
 template std::optional<long> ReadValueFromLine(const std::string& line,
                                                const std::string& expectedKey);
-template std::optional<float> ReadValueFromLine(
-    const std::string& line, const std::string& expectedKey);
+template std::optional<float> ReadValueFromLine(const std::string& line,
+                                                const std::string& expectedKey);
 template std::optional<double> ReadValueFromLine(
     const std::string& line, const std::string& expectedKey);
 
@@ -87,16 +87,14 @@ bool IsNumber(const std::string& s) {
 template bool IsNumber<int>(const std::string& s);
 template bool IsNumber<double>(const std::string& s);
 
-
 std::string ReadFirstLineFromFile(const std::string& filename) {
     std::string line;
     std::ifstream ifs{filename};
     if (ifs.is_open()) {
         std::getline(ifs, line);
-    }
-    else {
+    } else {
         std::ofstream ofs{"debug.txt", std::ios_base::app};
-        ofs << filename <<"\tCould not be opened\n";
+        ofs << filename << "\tCould not be opened\n";
     }
     return line;
 }

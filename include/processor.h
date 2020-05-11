@@ -1,12 +1,17 @@
 #ifndef PROCESSOR_H
 #define PROCESSOR_H
 
+#include <memory>
+#include <vector>
+
 class Processor {
    public:
-    float Utilization();  // TODO: See src/processor.cpp
+    virtual ~Processor() = default;
+    virtual float Utilization() const = 0;
+    virtual std::vector<float> CoreUtilizations() const = 0;
+    virtual int CountOfCores() const = 0;
 
-    // TODO: Declare any necessary private members
-   private:
+    static std::shared_ptr<Processor> makeProcessor();
 };
 
 #endif

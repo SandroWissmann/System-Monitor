@@ -1,18 +1,19 @@
 //#include <dirent.h>
 #include <unistd.h>
+#include <algorithm>
 #include <filesystem>
+#include <fstream>
 #include <string>
 #include <vector>
 
-#include "helper.h"
+#include "../helper.h"
+#include "linux_memory.h"
 #include "linux_parser.h"
 
 using std::stof;
 using std::string;
 using std::to_string;
 using std::vector;
-
-#include <dirent.h>
 
 namespace LinuxParser {
 
@@ -67,49 +68,10 @@ std::vector<int> Pids() {
                 Helper::IsNumber<int>(filename)) {
                 auto pid = std::stoi(filename);
                 pids.emplace_back(pid);
-
-                if(pid > 32768) {
-                    pid = 32768;
-                }
             }
         }
     }
     return pids;
-}
-
-
-
-// DONE: Read and return the system memory utilization
-
-// for now only calculate total used Memory here
-// like in htop we could also calculate later:
-/*
-Total used memory = MemTotal - MemFree
-Non cache/buffer memory (green) =
-    Total used memory - (Buffers + Cached memory)
-Buffers (blue) = Buffers
-Cached memory (yellow) = Cached + SReclaimable - Shmem
-Swap = SwapTotal - SwapFree
-*/
-float MemoryUtilization() {
-    std::ifstream ifs{kProcDirectory + kMeminfoFilename};
-    if (ifs.is_open()) {
-        string line;
-        std::getline(ifs, line);
-        auto memTotalOpt = Helper::ReadValueFromLine<long>(line, "MemTotal:");
-        if (!memTotalOpt) {
-            return 0.0;
-        }
-        std::getline(ifs, line);
-        auto memFreeOpt = Helper::ReadValueFromLine<long>(line, "MemFree:");
-        if (!memFreeOpt) {
-            return 0.0;
-        }
-        float memTotal = *memTotalOpt;
-        float memUsed =  *memTotalOpt - *memFreeOpt;
-        return  memUsed / memTotal;
-    }
-    return 0.0;
 }
 
 // DONE: Read and return the system uptime
@@ -126,11 +88,6 @@ long UpTime() {
             return std::stol(uptime);
         }
     }
-    else {
-        std::ofstream ofs{"debug.txt", std::ios_base::app};
-        ofs << kProcDirectory + kUptimeFilename
-            <<"\tCould not be opened\n";
-    }
     return 0;
 }
 
@@ -146,13 +103,10 @@ int RunningProcesses() {
                                           "procs_running");
 }
 
-// DONE: Read and return the number of jiffies for the system
-long Jiffies() { return ActiveJiffies() + IdleJiffies(); }
-
 // DONE: Read and return the number of active jiffies for a PID
-long ActiveJiffies(int pid) { 
-    auto line = Helper::ReadFirstLineFromFile(kProcDirectory + std::to_string(pid) 
-        + kStatFilename);
+long ActiveJiffies(int pid) {
+    auto line = Helper::ReadFirstLineFromFile(
+        kProcDirectory + std::to_string(pid) + kStatFilename);
     if (line.empty()) {
         return {};
     }
@@ -180,91 +134,29 @@ long ActiveJiffies(int pid) {
 
     ist >> part;
     if (!Helper::IsNumber<long>(part)) {
-            return 0;
-    }
-    auto utime = std::stol(part); 
-
-    ist >> part;
-    if (!Helper::IsNumber<long>(part)) {
-            return 0;
-    }
-    auto stime = std::stol(part); 
-
-    ist >> part;
-    if (!Helper::IsNumber<long>(part)) {
-            return 0;
-    }
-    auto cutime = std::stol(part); 
-
-    ist >> part;
-    if (!Helper::IsNumber<long>(part)) {
-            return 0;
-    }
-    auto cstime = std::stol(part); 
-
-
-    return utime + stime + cutime + cstime; 
-}
-
-
-// DONE: Read and return the number of active jiffies for the system
-long ActiveJiffies() {
-    std::vector<std::string> values = LinuxParser::CpuUtilization();
-    if(values.empty()) {
         return 0;
     }
+    auto utime = std::stol(part);
 
-    auto result = std::stol(values[kUser_]) + std::stol(values[kNice_]) +
-            std::stol(values[kSystem_]) + std::stol(values[kIdle_]) +
-            std::stol(values[kSoftIRQ_]) + std::stol(values[kSteal_]) +
-            std::stol(values[kGuest_]) + std::stol(values[kGuestNice_]);
-
-    return result;
-}
-
-// DONE: Read and return the number of idle jiffies for the system
-long IdleJiffies() {
-    std::vector<std::string> values = LinuxParser::CpuUtilization();
-    if(values.empty()) {
+    ist >> part;
+    if (!Helper::IsNumber<long>(part)) {
         return 0;
     }
+    auto stime = std::stol(part);
 
-    auto result = std::stol(values[kIdle_]) + std::stol(values[kIOwait_]);
-
-    return result;
-}
-
-// DONE: Read and return CPU utilization
-std::vector<std::string> CpuUtilization() {
-    auto line = Helper::ReadFirstLineFromFile(kProcDirectory + kStatFilename);
-    if (line.empty()) {
-        return {};
-    }
-
-    return ParseCPUUtilizationFromLine(line);
-}
-
-std::vector<std::string> ParseCPUUtilizationFromLine(const std::string& line) {
-    std::istringstream ist{line};
-    std::string part;
     ist >> part;
-    if (part != "cpu") {
-        return {};
+    if (!Helper::IsNumber<long>(part)) {
+        return 0;
     }
-    std::vector<std::string> utilisation;
-    constexpr auto countOfExpetedParts = 10;
-    utilisation.reserve(countOfExpetedParts);
-    while (!ist.eof()) {
-        ist >> part;
-        if (!Helper::IsNumber<long>(part)) {
-            return {};
-        }
-        utilisation.emplace_back(part);
+    auto cutime = std::stol(part);
+
+    ist >> part;
+    if (!Helper::IsNumber<long>(part)) {
+        return 0;
     }
-    if (utilisation.size() != countOfExpetedParts) {
-        return {};
-    }
-    return utilisation;
+    auto cstime = std::stol(part);
+
+    return utime + stime + cutime + cstime;
 }
 
 // DONE: Read and return the command associated with a process
@@ -275,12 +167,6 @@ std::string Command(int pid) {
         std::getline(ifs, line);
         return line;
     }
-    else {
-        std::ofstream ofs{"debug.txt", std::ios_base::app};
-        ofs << kProcDirectory + std::to_string(pid) + kCmdlineFilename 
-            <<"\tCould not be opened\n";
-    }
-
     return std::string();
 }
 
@@ -326,20 +212,15 @@ string User(int pid) {
 
 // DONE: Read and return the uptime of a process
 long UpTime(int pid) {
-    auto line = Helper::ReadFirstLineFromFile(kProcDirectory + 
-        std::to_string(pid) + kStatFilename);
-    if(line.empty()) {
-            std::ofstream ofs{"debug.txt", std::ios_base::app};
-        ofs << kProcDirectory + std::to_string(pid) + kCmdlineFilename 
-            <<"\tUptime not read\n";
+    auto line = Helper::ReadFirstLineFromFile(
+        kProcDirectory + std::to_string(pid) + kStatFilename);
+    if (line.empty()) {
         return 0;
     }
-
     return ParseProcessUptimeFromLine(line);
 }
 
-long ParseProcessUptimeFromLine(const std::string& line)
-{
+long ParseProcessUptimeFromLine(const std::string& line) {
     std::istringstream ist{line};
     std::string part;
     ist >> part;

@@ -10,7 +10,6 @@
 namespace Parser {
 
 // System
-float MemoryUtilization();
 
 long UpTime();
 std::vector<int> Pids();
@@ -19,13 +18,8 @@ int RunningProcesses();
 std::string OperatingSystem();
 std::string Kernel();
 
-std::vector<std::string> CpuUtilization();
-long Jiffies();
-long ActiveJiffies();
-long ActiveJiffies(int pid);
-long IdleJiffies();
-
 // Processes
+long ActiveJiffies(int pid);
 std::string Command(int pid);
 long RamInKb(int pid);
 std::string User(int pid);

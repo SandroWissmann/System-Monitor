@@ -5,7 +5,9 @@ find_package(Curses REQUIRED)
 include_directories(${CURSES_INCLUDE_DIRS})
 
 include_directories(include)
+include_directories(include/linux)
 file(GLOB SOURCES "src/*.cpp")
+file(GLOB SOURCES "src/linux/*.cpp")
 
 add_executable(monitor ${SOURCES})
 

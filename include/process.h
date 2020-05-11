@@ -1,27 +1,23 @@
 #ifndef PROCESS_H
 #define PROCESS_H
 
+#include <memory>
 #include <string>
 /*
 Basic class for Process representation
 It contains relevant attributes as shown below
 */
 class Process {
-public:
-    Process(int pid);
+   public:
+    virtual int Pid() const = 0;
+    virtual std::string User() const = 0;
+    virtual std::string Command() const = 0;
+    virtual long RamInMb() const = 0;
+    virtual long UpTime() const = 0;
+    virtual float CpuUtilization() const = 0;
+    bool operator<(const Process& a) const;
 
-    int Pid() const;
-    std::string User() const;
-    std::string Command() const;
-    float CpuUtilization() const;
-    std::string RamInMb() const;
-    long int UpTime() const;
-    bool operator<(Process const& a) const;
-
-private:
-    int mPid;
-    std::string mUser;
-    std::string mCommand;
+    static std::shared_ptr<Process> makeProcess(int pid);
 };
 
 #endif

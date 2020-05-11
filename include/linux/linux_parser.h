@@ -1,9 +1,8 @@
 #ifndef SYSTEM_PARSER_H
 #define SYSTEM_PARSER_H
 
-#include <fstream>
-#include <regex>
 #include <string>
+#include <vector>
 
 namespace LinuxParser {
 // Paths
@@ -23,35 +22,12 @@ std::string OperatingSystem();
 std::string Kernel();
 std::vector<int> Pids();
 
-float MemoryUtilization();
 long UpTime();
 int TotalProcesses();
 int RunningProcesses();
 
-// CPU
-enum CPUStates {
-    kUser_ = 0,
-    kNice_,
-    kSystem_,
-    kIdle_,
-    kIOwait_,
-    kIRQ_,
-    kSoftIRQ_,
-    kSteal_,
-    kGuest_,
-    kGuestNice_
-};
-
-long Jiffies();
-long ActiveJiffies();
-long ActiveJiffies(int pid);
-long IdleJiffies();
-std::vector<std::string> CpuUtilization();
-
-std::vector<std::string> ParseCPUUtilizationFromLine(
-    const std::string& line);
-
 // Processes
+long ActiveJiffies(int pid);
 std::string Command(int pid);
 long RamInKb(int pid);
 std::string Uid(int pid);
@@ -60,8 +36,6 @@ long UpTime(int pid);
 
 long ParseProcessUptimeFromLine(const std::string& line);
 long ClockTicksToSecond(long clockTicks);
-
-
 
 };  // namespace LinuxParser
 
