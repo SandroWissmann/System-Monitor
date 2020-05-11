@@ -1,13 +1,15 @@
-#include "linux_cpu_states.h"
+#include "cpu_states.h"
 
 #include "../helper.h"
 
 #include <iostream>
 #include <regex>
 
-LinuxCpuStates::LinuxCpuStates(long user, long nice, long system, long idle,
-                               long iowait, long irq, long softfIrq, long steal,
-                               long guest, long guestnice)
+namespace Linux {
+
+CpuStates::CpuStates(long user, long nice, long system, long idle, long iowait,
+                     long irq, long softfIrq, long steal, long guest,
+                     long guestnice)
     : mUser{user},
       mNice{nice},
       mSystem{system},
@@ -19,16 +21,16 @@ LinuxCpuStates::LinuxCpuStates(long user, long nice, long system, long idle,
       mGuest{guest},
       mGuestNice{guestnice} {}
 
-long LinuxCpuStates::Jiffies() const { return ActiveJiffies() + IdleJiffies(); }
+long CpuStates::Jiffies() const { return ActiveJiffies() + IdleJiffies(); }
 
-long LinuxCpuStates::ActiveJiffies() const {
+long CpuStates::ActiveJiffies() const {
     return mUser + mNice + mSystem + mIdle + mSoftIRQ + mSteal + mGuest +
            mGuestNice;
 }
 
-long LinuxCpuStates::IdleJiffies() const { return mIdle + mIOwait; }
+long CpuStates::IdleJiffies() const { return mIdle + mIOwait; }
 
-std::istream& operator>>(std::istream& is, LinuxCpuStates& obj) {
+std::istream& operator>>(std::istream& is, CpuStates& obj) {
     std::regex regex{R"(cpu(\d+)?)"};
 
     std::string part;
@@ -52,10 +54,12 @@ std::istream& operator>>(std::istream& is, LinuxCpuStates& obj) {
         is.setstate(std::ios_base::failbit);
         return is;
     }
-    obj = LinuxCpuStates{std::stol(utilisation[0]), std::stol(utilisation[1]),
-                         std::stol(utilisation[2]), std::stol(utilisation[3]),
-                         std::stol(utilisation[4]), std::stol(utilisation[5]),
-                         std::stol(utilisation[6]), std::stol(utilisation[7]),
-                         std::stol(utilisation[8]), std::stol(utilisation[9])};
+    obj = CpuStates{std::stol(utilisation[0]), std::stol(utilisation[1]),
+                    std::stol(utilisation[2]), std::stol(utilisation[3]),
+                    std::stol(utilisation[4]), std::stol(utilisation[5]),
+                    std::stol(utilisation[6]), std::stol(utilisation[7]),
+                    std::stol(utilisation[8]), std::stol(utilisation[9])};
     return is;
 }
+
+}  // namespace Linux

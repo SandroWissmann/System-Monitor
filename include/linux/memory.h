@@ -5,12 +5,14 @@
 
 #include <iosfwd>
 
-class LinuxMemory : public Memory {
+namespace Linux {
+
+class Memory : public ::Memory {
    public:
-    LinuxMemory() = default;
-    LinuxMemory(long memTotal, long memFree, long buffers, long cached,
-                long swapTotal, long swapFree, long shmem, long sReclaimable);
-    ~LinuxMemory() = default;
+    Memory() = default;
+    Memory(long memTotal, long memFree, long buffers, long cached,
+           long swapTotal, long swapFree, long shmem, long sReclaimable);
+    ~Memory() = default;
 
     float TotalUsedMemoryInPercent() const override;
     float CachedMemoryInPercent() const override;
@@ -28,10 +30,12 @@ class LinuxMemory : public Memory {
     long mSwap = 0;
 
    public:
-    static LinuxMemory createFromFile();
-    static LinuxMemory createFromFile(const std::string& filename);
+    static Memory createFromFile();
+    static Memory createFromFile(const std::string& filename);
 };
 
-std::istream& operator>>(std::istream& is, LinuxMemory& obj);
+std::istream& operator>>(std::istream& is, Memory& obj);
+
+}  // namespace Linux
 
 #endif

@@ -1,9 +1,11 @@
-#include "linux_memory.h"
+#include "../linux/memory.h"
 
 #include "../helper.h"
 
 #include <fstream>
 #include <iostream>
+
+namespace Linux {
 
 const std::string kProcDirectory{"/proc/"};
 const std::string kMeminfoFilename{"/meminfo"};
@@ -16,10 +18,8 @@ Buffers (blue) = Buffers
 Cached memory (yellow) = Cached + SReclaimable - Shmem
 Swap = SwapTotal - SwapFree
 */
-
-LinuxMemory::LinuxMemory(long memTotal, long memFree, long buffers, long cached,
-                         long swapTotal, long swapFree, long shmem,
-                         long sReclaimable)
+Memory::Memory(long memTotal, long memFree, long buffers, long cached,
+               long swapTotal, long swapFree, long shmem, long sReclaimable)
     : mTotalMemory{memTotal},
       mSwapTotal{swapTotal},
       mTotalUsedMemory{memTotal - memFree},
@@ -28,41 +28,41 @@ LinuxMemory::LinuxMemory(long memTotal, long memFree, long buffers, long cached,
       mBuffers{buffers},
       mSwap{swapTotal - swapFree} {}
 
-float LinuxMemory::TotalUsedMemoryInPercent() const {
+float Memory::TotalUsedMemoryInPercent() const {
     float percent =
         static_cast<float>(mTotalUsedMemory) / static_cast<float>(mTotalMemory);
     return percent;
 }
 
-float LinuxMemory::NonCacheNonBufferMemoryInPercent() const {
+float Memory::NonCacheNonBufferMemoryInPercent() const {
     float percent = static_cast<float>(mNonCacheNonBufferMemory) /
                     static_cast<float>(mTotalMemory);
     return percent;
 }
 
-float LinuxMemory::BuffersInPercent() const {
+float Memory::BuffersInPercent() const {
     float percent =
         static_cast<float>(mBuffers) / static_cast<float>(mTotalMemory);
     return percent;
 }
 
-float LinuxMemory::CachedMemoryInPercent() const {
+float Memory::CachedMemoryInPercent() const {
     float percent =
         static_cast<float>(mCachedMemory) / static_cast<float>(mTotalMemory);
     return percent;
 }
 
-float LinuxMemory::SwapInPercent() const {
+float Memory::SwapInPercent() const {
     float percent = static_cast<float>(mSwap) / static_cast<float>(mSwapTotal);
     return percent;
 }
 
-LinuxMemory LinuxMemory::createFromFile() {
+Memory Memory::createFromFile() {
     return createFromFile(kProcDirectory + kMeminfoFilename);
 }
 
-LinuxMemory LinuxMemory::createFromFile(const std::string& filename) {
-    LinuxMemory memory;
+Memory Memory::createFromFile(const std::string& filename) {
+    Memory memory;
     std::ifstream ifs{filename};
     if (ifs.is_open()) {
         ifs >> memory;
@@ -70,7 +70,7 @@ LinuxMemory LinuxMemory::createFromFile(const std::string& filename) {
     return memory;
 }
 
-std::istream& operator>>(std::istream& is, LinuxMemory& obj) {
+std::istream& operator>>(std::istream& is, Memory& obj) {
     std::string line;
     std::getline(is, line);
     auto memTotalOpt = Helper::ReadValueFromLine<long>(line, "MemTotal:");
@@ -132,9 +132,11 @@ std::istream& operator>>(std::istream& is, LinuxMemory& obj) {
         return is;
     }
 
-    obj = std::move(LinuxMemory{*memTotalOpt, *memFreeOpt, *buffersOpt,
-                                *cachedOpt, *swapTotalOpt, *swapFreeOpt,
-                                *shmemOpt, *sReclaimableOpt});
+    obj = std::move(Memory{*memTotalOpt, *memFreeOpt, *buffersOpt, *cachedOpt,
+                           *swapTotalOpt, *swapFreeOpt, *shmemOpt,
+                           *sReclaimableOpt});
 
     return is;
 }
+
+}  // namespace Linux

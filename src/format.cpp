@@ -6,8 +6,7 @@
 
 namespace Format {
 
-// DONE: Complete this helper function
-// INPUT: Long int measuring seconds
+// INPUT: Long measuring seconds
 // OUTPUT: HH:MM:SS
 std::string ElapsedTime(long seconds) {
     auto minutes = seconds / 60;

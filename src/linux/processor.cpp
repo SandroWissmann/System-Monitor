@@ -1,6 +1,6 @@
-#include "linux_processor.h"
+#include "../linux/processor.h"
 
-#include "linux_cpu_states.h"
+#include "cpu_states.h"
 
 #include <cassert>
 #include <fstream>
@@ -8,75 +8,75 @@
 #include <sstream>
 #include <thread>
 
+namespace Linux {
+
 const std::string kProcDirectory{"/proc/"};
 const std::string kStatFilename{"/stat"};
 
-LinuxProcessor::LinuxProcessor(
-    const LinuxCpuStates& firstCpuState, const LinuxCpuStates& secondCpuState,
-    const std::vector<LinuxCpuStates>& firstCoreStates,
-    const std::vector<LinuxCpuStates>& secondCoreStates)
+Processor::Processor(const CpuStates& firstCpuState,
+                     const CpuStates& secondCpuState,
+                     const std::vector<CpuStates>& firstCoreStates,
+                     const std::vector<CpuStates>& secondCoreStates)
     : mFirstCpuState{firstCpuState},
       mSecondCpuState{secondCpuState},
       mFirstCoreStates{firstCoreStates},
       mSecondCoreStates{secondCoreStates} {
+    assert(firstCoreStates.size() == secondCoreStates.size());
+}
 
-
-          assert(firstCoreStates.size() == secondCoreStates.size());
-      }
-
-// DONE: Return the aggregate CPU utilization
-float LinuxProcessor::Utilization() const {
+float Processor::Utilization() const {
     return calcUtilization(mFirstCpuState, mSecondCpuState);
 }
 
-std::vector<float> LinuxProcessor::CoreUtilizations() const {
+std::vector<float> Processor::CoreUtilizations() const {
     std::vector<float> coreUtilizations;
     coreUtilizations.reserve(mFirstCoreStates.size());
 
-    for (std::size_t i=0; i < mFirstCoreStates.size(); ++i) {
-        coreUtilizations.emplace_back(calcUtilization(mFirstCoreStates[i], mSecondCoreStates[i]));
+    for (std::size_t i = 0; i < mFirstCoreStates.size(); ++i) {
+        coreUtilizations.emplace_back(
+            calcUtilization(mFirstCoreStates[i], mSecondCoreStates[i]));
     }
     return coreUtilizations;
 }
 
-int LinuxProcessor::CountOfCores() const { return mFirstCoreStates.size(); }
+int Processor::CountOfCores() const { return mFirstCoreStates.size(); }
 
-float LinuxProcessor::calcUtilization(const LinuxCpuStates& firstState,
-                                      const LinuxCpuStates& secondState) const {
+float Processor::calcUtilization(const CpuStates& firstState,
+                                 const CpuStates& secondState) const {
     float deltaTotalTime = secondState.Jiffies() - firstState.Jiffies();
     float deltaActiveTime =
         secondState.ActiveJiffies() - firstState.ActiveJiffies();
     return deltaActiveTime / deltaTotalTime;
 }
 
-LinuxProcessor LinuxProcessor::createFromFile() {
+Processor Processor::createFromFile() {
     return createFromFile(kProcDirectory + kStatFilename);
 }
 
-LinuxProcessor LinuxProcessor::createFromFile(const std::string& filename) {
+Processor Processor::createFromFile(const std::string& filename) {
     auto firstStates = readFromFile(filename);
     if (!firstStates) {
-        return LinuxProcessor{};
+        return Processor{};
     }
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     auto secondStates = readFromFile(filename);
     if (!secondStates) {
-        return LinuxProcessor{};
+        return Processor{};
     }
 
     auto firstCpuState = firstStates->front();
-    auto firstCoreStates = std::vector<LinuxCpuStates>{
+    auto firstCoreStates = std::vector<CpuStates>{
         firstStates.value().begin() + 1, firstStates.value().end()};
 
     auto secondCpuState = secondStates->front();
-    auto secondCoreStates = std::vector<LinuxCpuStates>{
+    auto secondCoreStates = std::vector<CpuStates>{
         secondStates.value().begin() + 1, secondStates.value().end()};
 
-    return LinuxProcessor{firstCpuState, secondCpuState, firstCoreStates,
-                          secondCoreStates};
+    return Processor{firstCpuState, secondCpuState, firstCoreStates,
+                     secondCoreStates};
 }
 
-std::optional<std::vector<LinuxCpuStates>> LinuxProcessor::readFromFile(
+std::optional<std::vector<CpuStates>> Processor::readFromFile(
     const std::string& filename) {
     std::ifstream ifs{filename};
     if (!ifs.is_open()) {
@@ -97,7 +97,7 @@ std::optional<std::vector<LinuxCpuStates>> LinuxProcessor::readFromFile(
         return {};
     }
     // optional cores
-    std::vector<LinuxCpuStates> states;
+    std::vector<CpuStates> states;
     states.emplace_back(*optCpuState);
     states.emplace_back(*optCoreState);
 
@@ -111,9 +111,8 @@ std::optional<std::vector<LinuxCpuStates>> LinuxProcessor::readFromFile(
     return {states};
 }
 
-std::optional<LinuxCpuStates> LinuxProcessor::parseCpuState(
-    const std::string line) {
-    LinuxCpuStates cpuStates;
+std::optional<CpuStates> Processor::parseCpuState(const std::string line) {
+    CpuStates cpuStates;
     std::istringstream ist{line};
     ist >> cpuStates;
     if (ist.fail()) {
@@ -121,3 +120,5 @@ std::optional<LinuxCpuStates> LinuxProcessor::parseCpuState(
     }
     return {cpuStates};
 }
+
+}  // namespace Linux

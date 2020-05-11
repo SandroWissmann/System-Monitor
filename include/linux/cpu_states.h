@@ -3,12 +3,13 @@
 
 #include <iosfwd>
 
-class LinuxCpuStates {
+namespace Linux {
+
+class CpuStates {
    public:
-    LinuxCpuStates() = default;
-    LinuxCpuStates(long user, long nice, long system, long idle, long iowait,
-                   long irq, long softfIrq, long steal, long guest,
-                   long guestnice);
+    CpuStates() = default;
+    CpuStates(long user, long nice, long system, long idle, long iowait,
+              long irq, long softfIrq, long steal, long guest, long guestnice);
 
     long Jiffies() const;
     long ActiveJiffies() const;
@@ -27,6 +28,8 @@ class LinuxCpuStates {
     long mGuestNice = 0;
 };
 
-std::istream& operator>>(std::istream& is, LinuxCpuStates& obj);
+std::istream& operator>>(std::istream& is, CpuStates& obj);
+
+}  // namespace Linux
 
 #endif

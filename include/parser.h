@@ -18,14 +18,5 @@ int RunningProcesses();
 std::string OperatingSystem();
 std::string Kernel();
 
-// Processes
-long ActiveJiffies(int pid);
-std::string Command(int pid);
-long RamInKb(int pid);
-std::string User(int pid);
-long UpTime(int pid);
-
-long ClockTicksToSecond(long clockTicks);
-
 };  // namespace Parser
 #endif

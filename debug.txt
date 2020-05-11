@@ -282,3 +282,31 @@
 24934	0
 24935	0
 24940	0
+/proc/19701/stat	Could not be opened
+/proc/19701/stat	Could not be opened
+/proc/21713/stat	Could not be opened
+/proc/21713/stat	Could not be opened
+/proc/21918/stat	Could not be opened
+/proc/21918/stat	Could not be opened
+/proc/21919/stat	Could not be opened
+/proc/21919/stat	Could not be opened
+/proc/22202/stat	Could not be opened
+/proc/22202/stat	Could not be opened
+/proc/22340/stat	Could not be opened
+/proc/22340/stat	Could not be opened
+/proc/22458/stat	Could not be opened
+/proc/22458/stat	Could not be opened
+/proc/22459/stat	Could not be opened
+/proc/22459/stat	Could not be opened
+/proc/29279/stat	Could not be opened
+/proc/29279/stat	Could not be opened
+/proc/29340/stat	Could not be opened
+/proc/29340/stat	Could not be opened
+/proc/31987/stat	Could not be opened
+/proc/31987/stat	Could not be opened
+/proc/1136/stat	Could not be opened
+/proc/1136/stat	Could not be opened
+/proc/2211/stat	Could not be opened
+/proc/2211/stat	Could not be opened
+/proc/32167/stat	Could not be opened
+/proc/32167/stat	Could not be opened

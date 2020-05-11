@@ -3,8 +3,8 @@ all: format test build
 
 .PHONY: format
 format:
-	clang-format src/* include/* -i
-
+	#clang-format src/* include/* -i
+	find -iname *.h -o -iname *.cpp | xargs clang-format -i
 .PHONY: build
 build:
 	mkdir -p build

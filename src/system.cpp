@@ -1,16 +1,14 @@
+#include "system.h"
+
+#include "parser.h"
+
 #include <unistd.h>
+
 #include <algorithm>
 #include <cstddef>
 #include <set>
 #include <string>
 #include <vector>
-
-#include "system.h"
-
-#include "parser.h"
-
-#include <fstream>
-#include <iostream>
 
 System::System()
     : mKernel{Parser::Kernel()},
@@ -20,13 +18,10 @@ System::System()
       mLastCpuTimePoint{std::chrono::system_clock::now()},
       mLastMemoryTimePoint{mLastMemoryTimePoint} {}
 
-// DONE: Return the system's kernel identifier (string)
 std::string System::Kernel() const { return mKernel; }
 
-// DONE: Return the operating system name
 std::string System::OperatingSystem() const { return mOperatingSystem; }
 
-// DONE: Return the system's CPU
 std::shared_ptr<Processor> System::Cpu() {
     auto newTimePoint = std::chrono::system_clock::now();
 
@@ -40,7 +35,6 @@ std::shared_ptr<Processor> System::Cpu() {
     return mCpu;
 }
 
-// DONE: Return a container composed of the system's processes
 std::vector<std::shared_ptr<Process>> System::Processes() {
     auto newTimePoint = std::chrono::system_clock::now();
 
