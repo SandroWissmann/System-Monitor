@@ -2,9 +2,7 @@
 
 ![System Monitor](images/application.png)
 
-System monitor.
-
-Features:
+# Features:
 * Shows utilization of all cores of the CPU
 * Shows memory consumption
 * Shows the top 10 of the most hungry processes
