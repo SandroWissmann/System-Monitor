@@ -29,4 +29,4 @@ valgrind:
 	cd build && \
 	cmake -DCMAKE_BUILD_TYPE=debug .. && \
 	make
-	valgrind --log-file="report" ./build/monitor	
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file="report" ./build/monitor	
