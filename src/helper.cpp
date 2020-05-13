@@ -64,8 +64,8 @@ template std::optional<int> ReadValueFromLine(const std::string& line,
                                               const std::string& expectedKey);
 template std::optional<long> ReadValueFromLine(const std::string& line,
                                                const std::string& expectedKey);
-template std::optional<double> ReadValueFromLine(const std::string& line,
-                                                const std::string& expectedKey);
+template std::optional<double> ReadValueFromLine(
+    const std::string& line, const std::string& expectedKey);
 
 template <typename T>
 bool IsNumber(const std::string& s) {
@@ -88,7 +88,7 @@ std::string ReadFirstLineFromFile(const std::string& filename) {
     std::ifstream ifs{filename};
     if (ifs.is_open()) {
         std::getline(ifs, line);
-    } 
+    }
     return line;
 }
 

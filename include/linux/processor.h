@@ -23,7 +23,7 @@ class Processor : public ::Processor {
 
    private:
     double calcUtilization(const CpuStates& firstState,
-                          const CpuStates& secondState) const;
+                           const CpuStates& secondState) const;
 
     CpuStates mFirstCpuState{};
     CpuStates mSecondCpuState{};

@@ -42,7 +42,7 @@ std::vector<double> Processor::CoreUtilizations() const {
 int Processor::CountOfCores() const { return mFirstCoreStates.size(); }
 
 double Processor::calcUtilization(const CpuStates& firstState,
-                                 const CpuStates& secondState) const {
+                                  const CpuStates& secondState) const {
     double deltaTotalTime = secondState.Jiffies() - firstState.Jiffies();
     double deltaActiveTime =
         secondState.ActiveJiffies() - firstState.ActiveJiffies();

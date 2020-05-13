@@ -29,14 +29,14 @@ Memory::Memory(long memTotal, long memFree, long buffers, long cached,
       mSwap{swapTotal - swapFree} {}
 
 double Memory::TotalUsedMemoryInPercent() const {
-    double percent =
-        static_cast<double>(mTotalUsedMemory) / static_cast<double>(mTotalMemory);
+    double percent = static_cast<double>(mTotalUsedMemory) /
+                     static_cast<double>(mTotalMemory);
     return percent;
 }
 
 double Memory::NonCacheNonBufferMemoryInPercent() const {
     double percent = static_cast<double>(mNonCacheNonBufferMemory) /
-                    static_cast<double>(mTotalMemory);
+                     static_cast<double>(mTotalMemory);
     return percent;
 }
 
@@ -53,7 +53,8 @@ double Memory::CachedMemoryInPercent() const {
 }
 
 double Memory::SwapInPercent() const {
-    double percent = static_cast<double>(mSwap) / static_cast<double>(mSwapTotal);
+    double percent =
+        static_cast<double>(mSwap) / static_cast<double>(mSwapTotal);
     return percent;
 }
 
