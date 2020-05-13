@@ -5,11 +5,12 @@
 System monitor.
 
 Features:
--Shows utilization of all cores of the CPU
--Shows memory consumption
--Shows the top 10 of the most hungry processes
+* Shows utilization of all cores of the CPU
+* Shows memory consumption
+* Shows the top 10 of the most hungry processes
 
-Currently runs only on Linux with NCurses. But I plan to also add Windows and change the UI to QT with QML/Javascript
+Currently runs only on Linux with NCurses. 
+I plan to also add Windows and change the UI to QT with QML/Javascript
 
 ## ncurses
 [ncurses](https://www.gnu.org/software/ncurses/) is a library that facilitates text-based graphical output in the terminal. This project relies on ncurses for display output.
