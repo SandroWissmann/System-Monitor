@@ -17,12 +17,12 @@ class Processor : public ::Processor {
               const std::vector<CpuStates>& secondCoreStates);
     ~Processor() = default;
 
-    float Utilization() const override;
-    std::vector<float> CoreUtilizations() const override;
+    double Utilization() const override;
+    std::vector<double> CoreUtilizations() const override;
     int CountOfCores() const override;
 
    private:
-    float calcUtilization(const CpuStates& firstState,
+    double calcUtilization(const CpuStates& firstState,
                           const CpuStates& secondState) const;
 
     CpuStates mFirstCpuState{};

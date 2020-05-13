@@ -28,32 +28,32 @@ Memory::Memory(long memTotal, long memFree, long buffers, long cached,
       mBuffers{buffers},
       mSwap{swapTotal - swapFree} {}
 
-float Memory::TotalUsedMemoryInPercent() const {
-    float percent =
-        static_cast<float>(mTotalUsedMemory) / static_cast<float>(mTotalMemory);
+double Memory::TotalUsedMemoryInPercent() const {
+    double percent =
+        static_cast<double>(mTotalUsedMemory) / static_cast<double>(mTotalMemory);
     return percent;
 }
 
-float Memory::NonCacheNonBufferMemoryInPercent() const {
-    float percent = static_cast<float>(mNonCacheNonBufferMemory) /
-                    static_cast<float>(mTotalMemory);
+double Memory::NonCacheNonBufferMemoryInPercent() const {
+    double percent = static_cast<double>(mNonCacheNonBufferMemory) /
+                    static_cast<double>(mTotalMemory);
     return percent;
 }
 
-float Memory::BuffersInPercent() const {
-    float percent =
-        static_cast<float>(mBuffers) / static_cast<float>(mTotalMemory);
+double Memory::BuffersInPercent() const {
+    double percent =
+        static_cast<double>(mBuffers) / static_cast<double>(mTotalMemory);
     return percent;
 }
 
-float Memory::CachedMemoryInPercent() const {
-    float percent =
-        static_cast<float>(mCachedMemory) / static_cast<float>(mTotalMemory);
+double Memory::CachedMemoryInPercent() const {
+    double percent =
+        static_cast<double>(mCachedMemory) / static_cast<double>(mTotalMemory);
     return percent;
 }
 
-float Memory::SwapInPercent() const {
-    float percent = static_cast<float>(mSwap) / static_cast<float>(mSwapTotal);
+double Memory::SwapInPercent() const {
+    double percent = static_cast<double>(mSwap) / static_cast<double>(mSwapTotal);
     return percent;
 }
 

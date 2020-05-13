@@ -7,8 +7,8 @@
 class Processor {
    public:
     virtual ~Processor() = default;
-    virtual float Utilization() const = 0;
-    virtual std::vector<float> CoreUtilizations() const = 0;
+    virtual double Utilization() const = 0;
+    virtual std::vector<double> CoreUtilizations() const = 0;
     virtual int CountOfCores() const = 0;
 
     static std::shared_ptr<Processor> makeProcessor();

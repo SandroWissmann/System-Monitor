@@ -14,11 +14,11 @@ class Memory : public ::Memory {
            long swapTotal, long swapFree, long shmem, long sReclaimable);
     ~Memory() = default;
 
-    float TotalUsedMemoryInPercent() const override;
-    float CachedMemoryInPercent() const override;
-    float NonCacheNonBufferMemoryInPercent() const override;
-    float BuffersInPercent() const override;
-    float SwapInPercent() const override;
+    double TotalUsedMemoryInPercent() const override;
+    double CachedMemoryInPercent() const override;
+    double NonCacheNonBufferMemoryInPercent() const override;
+    double BuffersInPercent() const override;
+    double SwapInPercent() const override;
 
    private:
     long mTotalMemory = 0;

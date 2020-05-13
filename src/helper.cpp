@@ -29,8 +29,6 @@ template int ReadValueFromFile(const std::string& filename,
                                const std::string& key);
 template long ReadValueFromFile(const std::string& filename,
                                 const std::string& key);
-template float ReadValueFromFile(const std::string& filename,
-                                 const std::string& key);
 template double ReadValueFromFile(const std::string& filename,
                                   const std::string& key);
 
@@ -51,7 +49,7 @@ std::optional<ValueType> ReadValueFromLine(const std::string& line,
             if (std::is_same<ValueType, long>::value) {
                 return {std::stol(value)};
             }
-            if (std::is_same<ValueType, float>::value) {
+            if (std::is_same<ValueType, double>::value) {
                 return {std::stof(value)};
             }
             if (std::is_same<ValueType, double>::value) {
@@ -66,10 +64,8 @@ template std::optional<int> ReadValueFromLine(const std::string& line,
                                               const std::string& expectedKey);
 template std::optional<long> ReadValueFromLine(const std::string& line,
                                                const std::string& expectedKey);
-template std::optional<float> ReadValueFromLine(const std::string& line,
+template std::optional<double> ReadValueFromLine(const std::string& line,
                                                 const std::string& expectedKey);
-template std::optional<double> ReadValueFromLine(
-    const std::string& line, const std::string& expectedKey);
 
 template <typename T>
 bool IsNumber(const std::string& s) {
@@ -92,10 +88,7 @@ std::string ReadFirstLineFromFile(const std::string& filename) {
     std::ifstream ifs{filename};
     if (ifs.is_open()) {
         std::getline(ifs, line);
-    } else {
-        std::ofstream ofs{"debug.txt", std::ios_base::app};
-        ofs << filename << "\tCould not be opened\n";
-    }
+    } 
     return line;
 }
 

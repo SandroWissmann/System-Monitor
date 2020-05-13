@@ -36,9 +36,9 @@ long Process::RamInMb() const { return mRamInMb; }
 
 long Process::UpTime() const { return mUpTime; }
 
-float Process::CpuUtilization() const { return mCpuUtilization; }
+double Process::CpuUtilization() const { return mCpuUtilization; }
 
-float Process::calcCpuUtilization(int pid, int upTimeProcess) {
+double Process::calcCpuUtilization(int pid, int upTimeProcess) {
     auto uptime = Parser::UpTime();
 
     long startTime = upTimeProcess;
@@ -50,7 +50,7 @@ float Process::calcCpuUtilization(int pid, int upTimeProcess) {
         return 0;
     }
 
-    return static_cast<float>(totalTime) / static_cast<float>(elapsedTime);
+    return static_cast<double>(totalTime) / static_cast<double>(elapsedTime);
 }
 
 long ReadActiveJiffiesFromFile(int pid) {

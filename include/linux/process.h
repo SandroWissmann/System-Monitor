@@ -16,17 +16,17 @@ class Process : public ::Process {
     std::string Command() const override;
     long RamInMb() const override;
     long UpTime() const override;
-    float CpuUtilization() const override;
+    double CpuUtilization() const override;
 
    private:
-    float calcCpuUtilization(int pid, int upTimeProcess);
+    double calcCpuUtilization(int pid, int upTimeProcess);
 
     int mPid;
     std::string mUser;
     std::string mCommand;
     long mRamInMb;
     long mUpTime;
-    float mCpuUtilization;
+    double mCpuUtilization;
 };
 
 long ReadActiveJiffiesFromFile(int pid);

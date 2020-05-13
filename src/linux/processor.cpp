@@ -24,12 +24,12 @@ Processor::Processor(const CpuStates& firstCpuState,
     assert(firstCoreStates.size() == secondCoreStates.size());
 }
 
-float Processor::Utilization() const {
+double Processor::Utilization() const {
     return calcUtilization(mFirstCpuState, mSecondCpuState);
 }
 
-std::vector<float> Processor::CoreUtilizations() const {
-    std::vector<float> coreUtilizations;
+std::vector<double> Processor::CoreUtilizations() const {
+    std::vector<double> coreUtilizations;
     coreUtilizations.reserve(mFirstCoreStates.size());
 
     for (std::size_t i = 0; i < mFirstCoreStates.size(); ++i) {
@@ -41,10 +41,10 @@ std::vector<float> Processor::CoreUtilizations() const {
 
 int Processor::CountOfCores() const { return mFirstCoreStates.size(); }
 
-float Processor::calcUtilization(const CpuStates& firstState,
+double Processor::calcUtilization(const CpuStates& firstState,
                                  const CpuStates& secondState) const {
-    float deltaTotalTime = secondState.Jiffies() - firstState.Jiffies();
-    float deltaActiveTime =
+    double deltaTotalTime = secondState.Jiffies() - firstState.Jiffies();
+    double deltaActiveTime =
         secondState.ActiveJiffies() - firstState.ActiveJiffies();
     return deltaActiveTime / deltaTotalTime;
 }

@@ -7,11 +7,11 @@ class Memory {
    public:
     virtual ~Memory() = default;
 
-    virtual float TotalUsedMemoryInPercent() const = 0;
-    virtual float CachedMemoryInPercent() const = 0;
-    virtual float NonCacheNonBufferMemoryInPercent() const = 0;
-    virtual float BuffersInPercent() const = 0;
-    virtual float SwapInPercent() const = 0;
+    virtual double TotalUsedMemoryInPercent() const = 0;
+    virtual double CachedMemoryInPercent() const = 0;
+    virtual double NonCacheNonBufferMemoryInPercent() const = 0;
+    virtual double BuffersInPercent() const = 0;
+    virtual double SwapInPercent() const = 0;
 
     static std::shared_ptr<Memory> makeMemory();
 };

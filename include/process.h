@@ -15,7 +15,7 @@ class Process {
     virtual std::string Command() const = 0;
     virtual long RamInMb() const = 0;
     virtual long UpTime() const = 0;
-    virtual float CpuUtilization() const = 0;
+    virtual double CpuUtilization() const = 0;
     bool operator<(const Process& a) const;
 
     static std::shared_ptr<Process> makeProcess(int pid);

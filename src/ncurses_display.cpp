@@ -77,7 +77,7 @@ void PrintKernel(const std::string& kernel, WINDOW* window, int& row) {
     mvwprintw(window, ++row, 2, ("Kernel: " + kernel).c_str());
 }
 
-void PrintCpu(float utilization, WINDOW* window, int& row) {
+void PrintCpu(double utilization, WINDOW* window, int& row) {
     mvwprintw(window, ++row, 2, "CPU: ");
     wattron(window, COLOR_PAIR(colorBlue));
     mvwprintw(window, row, 10, "");
@@ -85,7 +85,7 @@ void PrintCpu(float utilization, WINDOW* window, int& row) {
     wattroff(window, COLOR_PAIR(colorBlue));
 }
 
-void PrintCore(int no, float utilization, WINDOW* window, int& row) {
+void PrintCore(int no, double utilization, WINDOW* window, int& row) {
     std::string core = "Core " + std::to_string(no) + ':';
     mvwprintw(window, ++row, 2, core.c_str());
     wattron(window, COLOR_PAIR(colorBlue));
@@ -110,7 +110,7 @@ void PrintMemory(System& system, WINDOW* window, int& row) {
     wattroff(window, COLOR_PAIR(colorGreen));
 }
 
-void PrintSwap(float swap, WINDOW* window, int& row) {
+void PrintSwap(double swap, WINDOW* window, int& row) {
     mvwprintw(window, ++row, 2, "Swap: ");
     wattron(window, COLOR_PAIR(colorBlue));
     mvwprintw(window, row, 10, "");
@@ -135,10 +135,10 @@ void PrintUpTime(long uptime, WINDOW* window, int& row) {
 
 // 50 bars uniformly displayed from 0 - 100 %
 // 2% is one bar(|)
-std::string ProgressBar(float percent) {
+std::string ProgressBar(double percent) {
     std::string result{"0%"};
     int size{50};
-    float bars{percent * size};
+    double bars{percent * size};
 
     for (int i{0}; i < size; ++i) {
         result += i <= bars ? '|' : ' ';
@@ -148,8 +148,8 @@ std::string ProgressBar(float percent) {
     return result + " " + display + "/100%";
 }
 
-void PrintProgressBarMemory(float totalUsed, float nonCachedNonBuffer,
-                            float buffer, float cached, WINDOW* window,
+void PrintProgressBarMemory(double totalUsed, double nonCachedNonBuffer,
+                            double buffer, double cached, WINDOW* window,
                             int& row) {
     constexpr auto size{50};
 
@@ -209,7 +209,7 @@ void PrintProgressBarMemory(float totalUsed, float nonCachedNonBuffer,
     wattroff(window, COLOR_PAIR(colorBlue));
 }
 
-std::string ToDisplayPercentage(float percent) {
+std::string ToDisplayPercentage(double percent) {
     std::string display{std::to_string(percent * 100).substr(0, 4)};
     if (percent < 0.1 || percent == 1.0) {
         display = " " + std::to_string(percent * 100).substr(0, 3);
@@ -239,7 +239,7 @@ void DisplayProcesses(const std::vector<std::shared_ptr<Process>>& processes,
         mvwprintw(window, ++row, pid_column,
                   to_string(processes[i]->Pid()).c_str());
         mvwprintw(window, row, user_column, processes[i]->User().c_str());
-        float cpu = processes[i]->CpuUtilization() * 100;
+        double cpu = processes[i]->CpuUtilization() * 100;
         mvwprintw(window, row, cpu_column, to_string(cpu).substr(0, 4).c_str());
         mvwprintw(window, row, ram_column,
                   std::to_string(processes[i]->RamInMb()).c_str());
