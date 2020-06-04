@@ -3,22 +3,38 @@
 ![System Monitor](images/application.png)
 
 # Features:
-* Shows utilization of all cores of the CPU
-* Shows memory consumption
-* Shows the top 10 of the most hungry processes
+* Displays utilization of all cores of the CPU
+* Displays memory consumption
+* Displays the top 10 of the most hungry processes
+* Displays System and kernel version
+* Displays System uptime
 
 Currently runs only on Linux with NCurses. 
 I plan to also add Windows and change the UI to QT with QML/Javascript
 
-## ncurses
-[ncurses](https://www.gnu.org/software/ncurses/) is a library that facilitates text-based graphical output in the terminal. This project relies on ncurses for display output.
+## Dependencies for Running Locally
 
-Install ncurses under linux: `sudo apt install libncurses5-dev libncursesw5-dev`
+* cmake >= 3.7
+  * [click here for installation instructions](https://cmake.org/install/)
+* make >= 4.1 
+  * `make` is installed by default on most Linux distros
+* ncurses >= 6.1
+  * Install with `sudo apt install libncurses5-dev libncursesw5-dev`
 
-## Make
-This project uses [Make](https://www.gnu.org/software/make/). The Makefile has five targets:
-* `build` compiles the source code and generates an executable
-* `format` applies [ClangFormat](https://clang.llvm.org/docs/ClangFormat.html) to style the source code
-* `debug` compiles the source code and generates an executable, including debugging symbols
-* `clean` deletes the `build/` directory, including all of the build artifacts
-* `valgrind` compiles the source code as debug and runs application with valgrind
+
+## Running the application
+
+1. Clone repo
+1. Go to folder `System-Monitor`
+2. Run `make build`
+3. `cd build`
+4. `./monitor`
+
+
+## Additional Commands from Makefile
+
+* `make debug` -> builds with debug information
+* `make format` -> runs [clangFormat](https://clang.llvm.org/docs/ClangFormat.html) on project
+* `make clean` -> deletes build folder
+* `make memcheck` -> builds app and runs it with [valgrind](https://www.valgrind.org/)
+
