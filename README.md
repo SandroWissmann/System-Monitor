@@ -3,11 +3,11 @@
 ![System Monitor](images/application.png)
 
 # Features:
-* Displays utilization of all cores of the CPU
+* Displays the utilization of all cores of the CPU
 * Displays memory consumption
 * Displays the top 10 of the most hungry processes
-* Displays System and kernel version
-* Displays System uptime
+* Displays both "system" and "kernel" version
+* Displays "system" uptime
 
 Currently the application runs only on Linux with NCurses. 
 I plan to also add Windows Support and change the UI to QT with QML/Javascript
@@ -17,7 +17,7 @@ I plan to also add Windows Support and change the UI to QT with QML/Javascript
 * cmake >= 3.7
   * [click here for installation instructions](https://cmake.org/install/)
 * make >= 4.1 
-  * `make` is installed by default on most Linux distros
+  * `make` is installed by default on most of the Linux distros
 * ncurses >= 6.1
   * Install with `sudo apt install libncurses5-dev libncursesw5-dev`
 
