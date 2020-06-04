@@ -4,10 +4,6 @@
 #include <memory>
 #include <string>
 
-/*
-Basic class for Process representation
-It contains relevant attributes as shown below
-*/
 class Process {
    public:
     virtual int Pid() const = 0;

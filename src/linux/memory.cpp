@@ -10,14 +10,6 @@ namespace Linux {
 const std::string kProcDirectory{"/proc/"};
 const std::string kMeminfoFilename{"/meminfo"};
 
-/*
-Total used memory = MemTotal - MemFree
-Non cache/buffer memory (green) =
-    Total used memory - (Buffers + Cached memory)
-Buffers (blue) = Buffers
-Cached memory (yellow) = Cached + SReclaimable - Shmem
-Swap = SwapTotal - SwapFree
-*/
 Memory::Memory(long memTotal, long memFree, long buffers, long cached,
                long swapTotal, long swapFree, long shmem, long sReclaimable)
     : mTotalMemory{memTotal},
