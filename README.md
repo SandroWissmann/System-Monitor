@@ -25,10 +25,10 @@ I plan to also add Windows Support and change the UI to QT with QML/Javascript
 ## Running the application
 
 1. Clone repo
-1. Go to folder `System-Monitor`
-2. Run `make build`
-3. `cd build`
-4. `./monitor`
+2. Go to folder `System-Monitor`
+3. Run `make build`
+4. `cd build`
+5. `./monitor`
 
 
 ## Additional Commands from Makefile
