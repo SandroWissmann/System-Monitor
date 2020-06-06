@@ -38,3 +38,6 @@ I plan to also add Windows Support and change the UI to QT with QML/Javascript
 * `make clean` -> deletes build folder
 * `make memcheck` -> builds app and runs it with [valgrind](https://www.valgrind.org/)
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
