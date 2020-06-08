@@ -44,6 +44,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     LICENSE.md \
+    OSDisplay.qml \
     README.md \
     images/application.png \
     main.qml

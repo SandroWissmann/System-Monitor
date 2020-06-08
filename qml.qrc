@@ -1,5 +1,13 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>OSDisplay.qml</file>
+        <file>KernelDisplay.qml</file>
+        <file>CPUUtilizationDisplay.qml</file>
+        <file>MemoryDisplay.qml</file>
+        <file>SwapDisplay.qml</file>
+        <file>TotalProcessesDisplay.qml</file>
+        <file>RunningProcessesDisplay.qml</file>
+        <file>UpTimeDisplay.qml</file>
     </qresource>
 </RCC>
