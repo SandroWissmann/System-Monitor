@@ -1,5 +1,5 @@
-#include "parser.h"
-#include "../helper.h"
+#include "../../include/parser.h"
+#include "../../include/helper.h"
 
 #include <unistd.h>
 

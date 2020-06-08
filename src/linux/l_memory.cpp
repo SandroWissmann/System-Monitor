@@ -1,6 +1,6 @@
-#include "../linux/memory.h"
+#include "../../include/linux/l_memory.h"
 
-#include "../helper.h"
+#include "../../include/helper.h"
 
 #include <fstream>
 #include <iostream>

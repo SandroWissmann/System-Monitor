@@ -1,6 +1,6 @@
-#include "../linux/processor.h"
+#include "../../include/linux/l_processor.h"
 
-#include "cpu_states.h"
+#include "../../include/linux/cpu_states.h"
 
 #include <cassert>
 #include <fstream>
