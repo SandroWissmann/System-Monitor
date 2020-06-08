@@ -18,10 +18,10 @@ SOURCES += \
         src/format.cpp \
         src/helper.cpp \
         src/linux/cpu_states.cpp \
-        src/linux/memory.cpp \
-        src/linux/parser.cpp \
-        src/linux/process.cpp \
-        src/linux/processor.cpp \
+        src/linux/l_memory.cpp \
+        src/linux/l_parser.cpp \
+        src/linux/l_process.cpp \
+        src/linux/l_processor.cpp \
         src/memory.cpp \
         src/parser.cpp \
         src/process.cpp \
@@ -52,10 +52,10 @@ HEADERS += \
     include/format.h \
     include/helper.h \
     include/linux/cpu_states.h \
-    include/linux/memory.h \
-    include/linux/parser.h \
-    include/linux/process.h \
-    include/linux/processor.h \
+    include/linux/l_memory.h \
+    include/linux/l_parser.h \
+    include/linux/l_process.h \
+    include/linux/l_processor.h \
     include/memory.h \
     include/parser.h \
     include/process.h \
