@@ -1,6 +1,6 @@
-#include "system.h"
+#include "../include/system.h"
 
-#include "parser.h"
+#include "../include/parser.h"
 
 #include <unistd.h>
 

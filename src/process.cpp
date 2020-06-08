@@ -1,6 +1,6 @@
-#include "process.h"
+#include "../include/process.h"
 
-#include "linux/process.h"
+#include "../include/linux/l_process.h"
 
 bool Process::operator<(const Process& a) const {
     return CpuUtilization() < a.CpuUtilization();

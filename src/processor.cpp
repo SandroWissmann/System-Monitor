@@ -1,6 +1,6 @@
-#include "processor.h"
+#include "../include/processor.h"
 
-#include "linux/processor.h"
+#include "include/linux/l_processor.h"
 
 std::shared_ptr<Processor> Processor::makeProcessor() {
 #ifdef __linux__

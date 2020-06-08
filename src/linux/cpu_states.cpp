@@ -1,6 +1,6 @@
-#include "cpu_states.h"
+#include "../../include/linux/cpu_states.h"
 
-#include "../helper.h"
+#include "../../include/helper.h"
 
 #include <iostream>
 #include <regex>

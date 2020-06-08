@@ -1,6 +1,6 @@
 #include "memory"
 
-#include "linux/memory.h"
+#include "../include/linux/l_memory.h"
 
 std::shared_ptr<Memory> Memory::makeMemory() {
 #ifdef __linux__
