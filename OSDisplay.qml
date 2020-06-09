@@ -1,11 +1,12 @@
 import QtQuick 2.15
 
-Rectangle {
+Item {
     property string osName: ""
 
-
     Text{
-        anchors.fill: parent
+        id: osText
+
+        font.pointSize: parent.height - 6
 
         text: "OS: " + parent.osName
     }

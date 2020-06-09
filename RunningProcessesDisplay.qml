@@ -1,10 +1,10 @@
 import QtQuick 2.15
 
-Rectangle {
+Item {
     property int countOfRunningProcesses: 0
 
     Text{
-        anchors.fill: parent
+        font.pointSize: parent.height - 6
 
         text: "Running Processes: " + parent.countOfRunningProcesses
     }

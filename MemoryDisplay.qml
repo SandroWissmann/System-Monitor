@@ -1,8 +1,8 @@
 import QtQuick 2.15
 
-Rectangle {
+Item {
     Text{
-        anchors.fill: parent
+        font.pointSize: parent.height - 6
 
         text: "Memory: "
     }

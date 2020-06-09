@@ -10,7 +10,7 @@ Item {
     property double max: 100.0
     property double value: 50.0
 
-    property int fontSize: 15
+    property int fontSize: height - 6
 
     function calcProgressBarValue(min, max, value) {
         return value / (max - min);

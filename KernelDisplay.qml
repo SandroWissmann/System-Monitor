@@ -1,11 +1,13 @@
 import QtQuick 2.15
 
-Rectangle {
+Item {
+    id: root
     property string kernelName: ""
 
-
     Text{
-        anchors.fill: parent
+        id: kernelText
+
+        font.pointSize: parent.height - 6
 
         text: "Kernel: " + parent.kernelName
     }

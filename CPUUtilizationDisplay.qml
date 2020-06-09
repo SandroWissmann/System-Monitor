@@ -1,9 +1,15 @@
 import QtQuick 2.15
 
-Rectangle {
-    Text{
-        anchors.fill: parent
+Item {
+    id: root
+    property double value: 0.0
 
-        text: "CPU: "
+    TextWithPercentageProgressBar{
+        id: utilizationProgressBar
+
+        height: root.height
+
+        textString: "CPU"
+        value: root.value
     }
 }

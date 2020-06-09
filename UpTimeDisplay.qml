@@ -1,10 +1,10 @@
 import QtQuick 2.15
 
-Rectangle {
+Item {
     property string upTimeString: ""
 
     Text{
-        anchors.fill: parent
+        font.pointSize: parent.height - 6
 
         text: "Up Time: " + parent.upTimeString
     }
