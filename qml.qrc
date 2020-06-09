@@ -9,5 +9,6 @@
         <file>TotalProcessesDisplay.qml</file>
         <file>RunningProcessesDisplay.qml</file>
         <file>UpTimeDisplay.qml</file>
+        <file>TextWithPercentageProgressBar.qml</file>
     </qresource>
 </RCC>
