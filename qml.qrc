@@ -10,5 +10,6 @@
         <file>RunningProcessesDisplay.qml</file>
         <file>UpTimeDisplay.qml</file>
         <file>TextWithPercentageProgressBar.qml</file>
+        <file>CoreUtilizationDisplay.qml</file>
     </qresource>
 </RCC>

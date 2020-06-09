@@ -35,19 +35,38 @@ Window {
 
             value: 50.0
         }
-//        Text{
-//            text: "Core 1: "
-//        }
-//        Text{
-//            text: "Core 2:"
-//        }
-//        Text{
-//            text: "Core 3:"
-//        }
-//        Text{
-//            text: "Core 4:"
-//        }
+        CoreUtilizationDisplay{
+            width: root.elementWidth
+            height: root.elementHeight
+            core: 1
 
+            progressBarColor: "#3399FF" // blue
+            minMaxTextColor: "blue"
+        }
+        CoreUtilizationDisplay{
+            width: root.elementWidth
+            height: root.elementHeight
+            core: 2
+
+            progressBarColor: "#3399FF" // blue
+            minMaxTextColor: "blue"
+        }
+        CoreUtilizationDisplay{
+            width: root.elementWidth
+            height: root.elementHeight
+            core: 3
+
+            progressBarColor: "#3399FF" // blue
+            minMaxTextColor: "blue"
+        }
+        CoreUtilizationDisplay{
+            width: root.elementWidth
+            height: root.elementHeight
+            core: 4
+
+            progressBarColor: "#3399FF" // blue
+            minMaxTextColor: "blue"
+        }
         MemoryDisplay{
             width: root.elementWidth
             height: root.elementHeight
