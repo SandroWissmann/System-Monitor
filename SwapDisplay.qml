@@ -1,9 +1,21 @@
 import QtQuick 2.15
 
 Item {
-    Text{
-        font.pointSize: parent.height - 6
+    id: root
+    property double value: 0.0
 
-        text: "Swap: "
+    property string progressBarColor: "black"
+    property string minMaxTextColor: "black"
+
+    TextWithPercentageProgressBar{
+        id: swapProgressBar
+
+        progressBarColor: parent.progressBarColor
+        minMaxTextColor: parent.minMaxTextColor
+
+        height: root.height
+
+        textString: "Swap: "
+        value: root.value
     }
 }
