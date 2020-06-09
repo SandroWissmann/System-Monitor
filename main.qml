@@ -30,6 +30,9 @@ Window {
             width: root.elementWidth
             height: root.elementHeight
 
+            progressBarColor: "#3399FF" // blue
+            minMaxTextColor: "blue"
+
             value: 50.0
         }
 //        Text{
@@ -44,6 +47,7 @@ Window {
 //        Text{
 //            text: "Core 4:"
 //        }
+
         MemoryDisplay{
             width: root.elementWidth
             height: root.elementHeight
@@ -51,6 +55,11 @@ Window {
         SwapDisplay{
             width: root.elementWidth
             height: root.elementHeight
+
+            progressBarColor: "#FF9933" // orange
+            minMaxTextColor: "#FF8000" // orange
+
+            value: 70
         }
         TotalProcessesDisplay{
             width: root.elementWidth
