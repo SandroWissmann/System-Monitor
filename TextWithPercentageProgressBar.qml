@@ -5,6 +5,9 @@ import QtQuick.Controls.Styles 1.4
 Item {
     id: root;
 
+    property string progressBarColor: "black"
+    property string minMaxTextColor: "black"
+
     property string textString: ""
     property double min: 0.0
     property double max: 100.0
@@ -34,7 +37,7 @@ Item {
         width: 25
 
         font.pointSize: parent.fontSize
-        color: "blue"
+        color: root.minMaxTextColor
 
         text: parseInt(min) + "% "
     }
@@ -55,7 +58,7 @@ Item {
                 implicitHeight: minPercentageText.height
             }
             progress: Rectangle {
-                color: "#3399FF" //blue
+                color: root.progressBarColor
                 border.color: "black"
                 border.width: 2
             }
@@ -68,7 +71,7 @@ Item {
         anchors.left: progressBar.right
 
         font.pointSize: parent.fontSize
-        color: "blue"
+        color: root.minMaxTextColor
 
         text: parseFloat(value).toFixed(1) + "/" + parseFloat(max).toFixed(1) + "% "
     }
