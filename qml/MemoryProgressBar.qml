@@ -89,11 +89,11 @@ Item {
 
     function calcEmptyRectangleWidth()
     {
-        var emptyValue = 100.0;
-        emptyValue -= nonCachedNonBufferValue;
-        emptyValue -= bufferValue;
-        emptyValue -= cachedValue;
+        var emptyValue = width;
+        emptyValue -= nonCachedNonBufferRectangle.width;
+        emptyValue -= bufferRectangle.width;
+        emptyValue -= cachedRectangle.width;
 
-        console.assert(emptyValue >= 0.0, "emptyValue < 0.0")
+        return emptyValue;
     }
 }

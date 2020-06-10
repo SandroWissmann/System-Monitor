@@ -67,7 +67,7 @@ Window {
             progressBarColor: "#3399FF" // blue
             minMaxTextColor: "blue"
         }
-        MemoryProgressBar{
+        MemoryDisplay{
             width: root.elementWidth
             height: root.elementHeight
 
@@ -79,12 +79,9 @@ Window {
             bufferValueColor: "yellow"
             cachedColor: "green"
             emptyColor: "lightgray"
-        }
+            minMaxTextColor: "blue"
 
-//        MemoryDisplay{
-//            width: root.elementWidth
-//            height: root.elementHeight
-//        }
+        }
         SwapDisplay{
             width: root.elementWidth
             height: root.elementHeight
