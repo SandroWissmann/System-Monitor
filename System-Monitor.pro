@@ -26,7 +26,8 @@ SOURCES += \
         src/parser.cpp \
         src/process.cpp \
         src/processor.cpp \
-        src/system.cpp
+        src/system.cpp \
+        src/systeminformation.cpp \
 
 RESOURCES += qml.qrc \
     qml.qrc
@@ -59,4 +60,5 @@ HEADERS += \
     include/parser.h \
     include/process.h \
     include/processor.h \
-    include/system.h
+    include/system.h \
+    include/systeminformation.h

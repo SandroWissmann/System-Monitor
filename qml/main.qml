@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
+import com.sysmon 1.0
 
 Window {
     id: root
@@ -12,13 +13,16 @@ Window {
     readonly property int elementWidth: root.width
     readonly property int elementHeight: 20
 
+    SystemInformation{
+        id: sysinfo
+    }
+
     Column{
 
         OSDisplay{
             width: root.elementWidth
             height: root.elementHeight
-
-            osName: "Kde Neon User Edition"
+            osName: sysinfo.operatingSystem
         }
         KernelDisplay{
             width: root.elementWidth
@@ -95,19 +99,19 @@ Window {
             width: root.elementWidth
             height: root.elementHeight
 
-            countOfProcesses: 89784
+            countOfProcesses: sysinfo.totalProcesses
         }
         RunningProcessesDisplay{
             width: root.elementWidth
             height: root.elementHeight
 
-            countOfRunningProcesses: 3
+            countOfRunningProcesses: sysinfo.runningProcesses
         }
         UpTimeDisplay{
             width: root.elementWidth
             height: root.elementHeight
 
-            upTimeString: "33:08:17"
+            upTimeString: sysinfo.UpTime
         }
     }
 }
