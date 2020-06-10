@@ -11,5 +11,6 @@
         <file>qml/TextWithPercentageProgressBar.qml</file>
         <file>qml/TotalProcessesDisplay.qml</file>
         <file>qml/UpTimeDisplay.qml</file>
+        <file>qml/MemoryProgressBar.qml</file>
     </qresource>
 </RCC>
