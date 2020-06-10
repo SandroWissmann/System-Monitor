@@ -1,6 +1,8 @@
 import QtQuick 2.15
 
 Item {
+    id: root
+
     property double value: 0.0
 
     property int core: 1
@@ -11,12 +13,12 @@ Item {
     TextWithPercentageProgressBar{
         id: utilizationProgressBar
 
-        progressBarColor: parent.progressBarColor
-        minMaxTextColor: parent.minMaxTextColor
+        progressBarColor: root.progressBarColor
+        minMaxTextColor: root.minMaxTextColor
 
-        height: parent.height
+        height: root.height
 
         textString: "Core" + core + ": "
-        value: parent.value
+        value: root.value
     }
 }

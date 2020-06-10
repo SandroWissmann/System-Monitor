@@ -9,7 +9,7 @@ Item {
     property string minMaxTextColor: "blue"
 
     property string textString: ""
-    property double value: 50.0
+    property double value: 0.0
 
     property int fontSize: height - 6
 
@@ -31,16 +31,21 @@ Item {
         width: 25
 
         font.pointSize: parent.fontSize
-        color: root.minMaxTextColor
+        color: parent.minMaxTextColor
 
         text: "0% "
+    }
+
+    function normalizeValue(value)
+    {
+        return value/ 100.0;
     }
 
     ProgressBar {
         id: progressBar
 
         anchors.left: minPercentageText.right
-        value: root.value
+        value: normalizeValue(root.value)
 
         style: ProgressBarStyle {
             background: Rectangle {

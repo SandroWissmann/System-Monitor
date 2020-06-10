@@ -1,6 +1,8 @@
 import QtQuick 2.15
 
 Item {
+    id: root
+
     property double value: 0.0
 
     property string progressBarColor: "black"
@@ -12,9 +14,9 @@ Item {
         progressBarColor: parent.progressBarColor
         minMaxTextColor: parent.minMaxTextColor
 
-        height: parent.height
+        height: root.height
 
         textString: "CPU: "
-        value: parent.value
+        value: root.value
     }
 }
