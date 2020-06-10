@@ -96,22 +96,47 @@ Window {
             value: 70
         }
         TotalProcessesDisplay{
+            id: totalProcessesDisplay
+
             width: root.elementWidth
             height: root.elementHeight
 
-            countOfProcesses: sysinfo.totalProcesses
+            function set(){
+                countOfProcesses = sysinfo.totalProcesses
+            }
         }
         RunningProcessesDisplay{
+            id: runningProcessesDisplay
+
             width: root.elementWidth
             height: root.elementHeight
 
-            countOfRunningProcesses: sysinfo.runningProcesses
+            function set() {
+                countOfRunningProcesses = sysinfo.runningProcesses
+            }
         }
         UpTimeDisplay{
             width: root.elementWidth
             height: root.elementHeight
 
-            upTimeString: sysinfo.UpTime
+            function setUpTime() {
+                upTimeString = sysinfo.UpTime
+            }
         }
+    }
+
+    function update()
+    {
+        totalProcessesDisplay.set();
+        runningProcessesDisplay.set();
+    }
+
+    Timer {
+        id: updateTimer
+        interval: 1000
+        repeat: true
+        running: true
+        triggeredOnStart: true
+        onTriggered: update()
     }
 }
