@@ -5,19 +5,13 @@ import QtQuick.Controls.Styles 1.4
 Item {
     id: root;
 
-    property string progressBarColor: "black"
-    property string minMaxTextColor: "black"
+    property string progressBarColor: "#3399FF" // blue
+    property string minMaxTextColor: "blue"
 
     property string textString: ""
-    property double min: 0.0
-    property double max: 100.0
     property double value: 50.0
 
     property int fontSize: height - 6
-
-    function calcProgressBarValue(min, max, value) {
-        return value / (max - min);
-    }
 
     Text{
         id: descriptionText
@@ -39,14 +33,14 @@ Item {
         font.pointSize: parent.fontSize
         color: root.minMaxTextColor
 
-        text: parseInt(min) + "% "
+        text: "0% "
     }
 
     ProgressBar {
         id: progressBar
 
         anchors.left: minPercentageText.right
-        value: calcProgressBarValue(root.min, root.max, root.value);
+        value: root.value
 
         style: ProgressBarStyle {
             background: Rectangle {
@@ -73,6 +67,6 @@ Item {
         font.pointSize: parent.fontSize
         color: root.minMaxTextColor
 
-        text: parseFloat(value).toFixed(1) + "/" + parseFloat(max).toFixed(1) + "% "
+        text: parseFloat(value).toFixed(1) + "/100.0% "
     }
 }
