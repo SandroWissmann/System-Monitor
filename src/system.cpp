@@ -10,6 +10,8 @@
 #include <string>
 #include <vector>
 
+namespace Sysmon{
+
 System::System()
     : mKernel{Parser::Kernel()},
       mOperatingSystem{Parser::OperatingSystem()},
@@ -89,4 +91,6 @@ std::vector<std::shared_ptr<Process>> System::updateProcesses() {
     std::sort(processes.begin(), processes.end(), comparator);
 
     return processes;
+}
+
 }

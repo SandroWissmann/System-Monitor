@@ -4,6 +4,8 @@
 #include <memory>
 #include <vector>
 
+namespace Sysmon{
+
 class Processor {
    public:
     virtual ~Processor() = default;
@@ -13,5 +15,7 @@ class Processor {
 
     static std::shared_ptr<Processor> makeProcessor();
 };
+
+}
 
 #endif

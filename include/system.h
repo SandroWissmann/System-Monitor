@@ -11,6 +11,8 @@
 #include "process.h"
 #include "processor.h"
 
+namespace Sysmon{
+
 class System {
    public:
     System();
@@ -40,5 +42,7 @@ class System {
     std::chrono::time_point<std::chrono::system_clock> mLastProcessTimePoint{};
     static constexpr auto mMinReadDifferenceInMS = 100;
 };
+
+}
 
 #endif

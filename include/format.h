@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace Format {
+namespace Sysmon::Format {
 std::string ElapsedTime(long seconds);
 
 std::string FillWithNLeadingSigns(const std::string& s, int minSize, char sign);

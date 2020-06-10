@@ -5,7 +5,7 @@
 #include <iostream>
 #include <regex>
 
-namespace Linux {
+namespace Sysmon::Linux {
 
 CpuStates::CpuStates(long user, long nice, long system, long idle, long iowait,
                      long irq, long softfIrq, long steal, long guest,

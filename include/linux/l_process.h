@@ -5,9 +5,9 @@
 
 #include <string>
 
-namespace Linux {
+namespace Sysmon::Linux {
 
-class Process : public ::Process {
+class Process : public ::Sysmon::Process {
    public:
     Process(int pid);
 

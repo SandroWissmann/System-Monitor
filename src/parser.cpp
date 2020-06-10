@@ -3,7 +3,7 @@
 #include "../include/linux/l_memory.h"
 #include "../include/linux/l_parser.h"
 
-namespace Parser {
+namespace Sysmon::Parser {
 
 // System
 long UpTime() { return Linux::Parser::UpTime(); }

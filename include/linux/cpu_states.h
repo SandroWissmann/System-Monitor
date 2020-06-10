@@ -3,7 +3,7 @@
 
 #include <iosfwd>
 
-namespace Linux {
+namespace Sysmon::Linux {
 
 class CpuStates {
    public:

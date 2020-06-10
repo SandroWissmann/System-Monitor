@@ -8,7 +8,7 @@
 #include <sstream>
 #include <thread>
 
-namespace Linux {
+namespace Sysmon::Linux {
 
 const std::string kProcDirectory{"/proc/"};
 const std::string kStatFilename{"/stat"};

@@ -5,9 +5,9 @@
 
 #include <iosfwd>
 
-namespace Linux {
+namespace Sysmon::Linux {
 
-class Memory : public ::Memory {
+class Memory : public ::Sysmon::Memory {
    public:
     Memory() = default;
     Memory(long memTotal, long memFree, long buffers, long cached,

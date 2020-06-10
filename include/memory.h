@@ -3,6 +3,8 @@
 
 #include <memory>
 
+namespace Sysmon{
+
 class Memory {
    public:
     virtual ~Memory() = default;
@@ -15,5 +17,7 @@ class Memory {
 
     static std::shared_ptr<Memory> makeMemory();
 };
+
+}
 
 #endif

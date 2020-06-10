@@ -7,7 +7,8 @@
 // Wrapper which should select depending on the compiled os which
 // parser to use
 // Add for Supporting other OS in the future
-namespace Parser {
+
+namespace Sysmon::Parser {
 
 // System
 

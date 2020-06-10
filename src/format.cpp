@@ -4,7 +4,7 @@
 
 #include <fstream>
 
-namespace Format {
+namespace Sysmon::Format {
 
 // INPUT: Long measuring seconds
 // OUTPUT: HH:MM:SS
