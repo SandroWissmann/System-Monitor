@@ -72,12 +72,22 @@ Window {
             minMaxTextColor: "blue"
         }
         MemoryDisplay{
+            id: memoryDisplay
+
             width: root.elementWidth
             height: root.elementHeight
 
-            nonCachedNonBufferValue: 60
-            bufferValue: 15
-            cachedValue: 10
+            function set(){
+                console.log(sysinfo.totalUsedMemoryInPercent);
+                console.log(sysinfo.buffersInPercent);
+                console.log(sysinfo.cachedMemoryInPercent);
+                console.log(sysinfo.totalUsedMemoryInPercent);
+
+                nonCachedNonBufferValue = sysinfo.nonCacheNonBufferMemoryInPercent;
+                bufferValue = sysinfo.buffersInPercent;
+                cachedValue = sysinfo.cachedMemoryInPercent;
+                totalValue = sysinfo.totalUsedMemoryInPercent;
+            }
 
             nonCachedNonBufferColor: "#3399FF"
             bufferValueColor: "yellow"
@@ -87,13 +97,18 @@ Window {
 
         }
         SwapDisplay{
+            id: swapDisplay
+
             width: root.elementWidth
             height: root.elementHeight
 
             progressBarColor: "#FF9933" // orange
             minMaxTextColor: "#FF8000" // orange
 
-            value: 70
+
+            function set(){
+                value = sysinfo.swapInPercent;
+            }
         }
         TotalProcessesDisplay{
             id: totalProcessesDisplay
@@ -129,6 +144,8 @@ Window {
 
     function update()
     {
+        memoryDisplay.set();
+        swapDisplay.set();
         totalProcessesDisplay.set();
         runningProcessesDisplay.set();
         upTimeDisplay.set();
