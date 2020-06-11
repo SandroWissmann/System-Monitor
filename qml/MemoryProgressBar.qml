@@ -84,7 +84,7 @@ Item {
         console.assert(cachedValue <= 100.0,
                        "cachedValue > 100.0");
 
-        return (bufferValue / 100.0) * width;
+        return (cachedValue / 100.0) * width;
     }
 
     function calcEmptyRectangleWidth()
