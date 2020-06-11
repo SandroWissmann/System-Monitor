@@ -116,11 +116,13 @@ Window {
             }
         }
         UpTimeDisplay{
+            id: upTimeDisplay
+
             width: root.elementWidth
             height: root.elementHeight
 
-            function setUpTime() {
-                upTimeString = sysinfo.UpTime
+            function set() {
+                upTimeInSeconds = sysinfo.UpTime
             }
         }
     }
@@ -129,6 +131,7 @@ Window {
     {
         totalProcessesDisplay.set();
         runningProcessesDisplay.set();
+        upTimeDisplay.set();
     }
 
     Timer {
