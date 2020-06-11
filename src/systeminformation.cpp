@@ -50,6 +50,20 @@ double SystemInformation::SwapInPercent()
     return mMemory->SwapInPercent() * 100.0;
 }
 
+double SystemInformation::CpuUtilizationInPercent()
+{
+    return mCpu->Utilization() * 100;
+}
+
+QVector<double> SystemInformation::CoreUtilizationsInPercent()
+{
+    auto coreUtilizations = mCpu->CoreUtilizations();
+    for(auto &coreUtilization : coreUtilizations) {
+        coreUtilization *= 100;
+    }
+    return QVector<double>(coreUtilizations.begin(), coreUtilizations.end());
+}
+
 long SystemInformation::UpTime() const
 {
     return Parser::UpTime();
@@ -72,15 +86,7 @@ void SystemInformation::timerEvent(QTimerEvent *event)
     mCpu = Processor::makeProcessor();
     mMemory = Memory::makeMemory();
 
-    emit TotalUsedMemoryInPercentChanged();
-    emit CachedMemoryInPercentChanged();
-    emit NonCacheNonBufferMemoryInPercentChanged();
-    emit BuffersInPercentChanged();
-    emit SwapInPercentChanged();
-
-    emit UpTimeChanged();
-    emit TotalProcessesChanged();
-    emit RunningProcessesChanged();
+    emit DataChanged();
 }
 
 

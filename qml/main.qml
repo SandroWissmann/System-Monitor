@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
+import Qt.labs.qmlmodels 1.0
 import com.sysmon 1.0
 
 Window {
@@ -18,6 +19,7 @@ Window {
     }
 
     Column{
+        id: column
 
         OSDisplay{
             width: root.elementWidth
@@ -37,39 +39,21 @@ Window {
             progressBarColor: "#3399FF" // blue
             minMaxTextColor: "blue"
 
-            value: 50.0
+            value: sysinfo.cpuUtilizationInPercent
         }
-        CoreUtilizationDisplay{
-            width: root.elementWidth
-            height: root.elementHeight
-            core: 1
+        Repeater{
+            model: sysinfo.coreUtilizationsInPercent.length
 
-            progressBarColor: "#3399FF" // blue
-            minMaxTextColor: "blue"
-        }
-        CoreUtilizationDisplay{
-            width: root.elementWidth
-            height: root.elementHeight
-            core: 2
+            CoreUtilizationDisplay{
+                width: root.elementWidth
+                height: root.elementHeight
+                core: index + 1
 
-            progressBarColor: "#3399FF" // blue
-            minMaxTextColor: "blue"
-        }
-        CoreUtilizationDisplay{
-            width: root.elementWidth
-            height: root.elementHeight
-            core: 3
+                value: sysinfo.coreUtilizationsInPercent[index]
 
-            progressBarColor: "#3399FF" // blue
-            minMaxTextColor: "blue"
-        }
-        CoreUtilizationDisplay{
-            width: root.elementWidth
-            height: root.elementHeight
-            core: 4
-
-            progressBarColor: "#3399FF" // blue
-            minMaxTextColor: "blue"
+                progressBarColor: "#3399FF" // blue
+                minMaxTextColor: "blue"
+            }
         }
         MemoryDisplay{
             id: memoryDisplay
@@ -127,4 +111,41 @@ Window {
         }
     }
 
+
+    TableView {
+        anchors.fill: parent
+        columnSpacing: 1
+        rowSpacing: 1
+        clip: true
+
+        model: TableModel {
+            TableModelColumn { display: "name" }
+            TableModelColumn { display: "color" }
+
+            rows: [
+                {
+                    "name": "cat",
+                    "color": "black"
+                },
+                {
+                    "name": "dog",
+                    "color": "brown"
+                },
+                {
+                    "name": "bird",
+                    "color": "white"
+                }
+            ]
+        }
+
+        delegate: Rectangle {
+            implicitWidth: 100
+            implicitHeight: 50
+            border.width: 1
+
+            Text {
+                text: display
+                anchors.centerIn: parent
+            }
+        }
 }

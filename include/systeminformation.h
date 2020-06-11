@@ -7,6 +7,7 @@
 
 #include <QObject>
 #include <QString>
+#include <QVector>
 
 namespace Sysmon{
 
@@ -17,23 +18,22 @@ class SystemInformation : public QObject
     Q_PROPERTY(QString operatingSystem READ OperatingSystem CONSTANT)
 
     Q_PROPERTY(double totalUsedMemoryInPercent READ TotalUsedMemoryInPercent
-               NOTIFY TotalUsedMemoryInPercentChanged)
+               NOTIFY DataChanged)
     Q_PROPERTY(double cachedMemoryInPercent READ CachedMemoryInPercent
-               NOTIFY CachedMemoryInPercentChanged)
+               NOTIFY DataChanged)
     Q_PROPERTY(double nonCacheNonBufferMemoryInPercent
-               READ NonCacheNonBufferMemoryInPercent
-               NOTIFY NonCacheNonBufferMemoryInPercentChanged)
+               READ NonCacheNonBufferMemoryInPercent NOTIFY DataChanged)
+    Q_PROPERTY(double buffersInPercent READ BuffersInPercent NOTIFY DataChanged)
+    Q_PROPERTY(double swapInPercent READ SwapInPercent NOTIFY DataChanged)
 
-    Q_PROPERTY(double buffersInPercent READ BuffersInPercent
-               NOTIFY BuffersInPercentChanged)
-    Q_PROPERTY(double swapInPercent READ SwapInPercent
-               NOTIFY SwapInPercentChanged)
+    Q_PROPERTY(double cpuUtilizationInPercent READ CpuUtilizationInPercent
+               NOTIFY DataChanged)
+    Q_PROPERTY(QVector<double> coreUtilizationsInPercent
+               READ CoreUtilizationsInPercent NOTIFY DataChanged)
 
-    Q_PROPERTY(long UpTime READ UpTime NOTIFY UpTimeChanged)
-    Q_PROPERTY(int totalProcesses READ TotalProcesses
-               NOTIFY TotalProcessesChanged)
-    Q_PROPERTY(int runningProcesses READ RunningProcesses
-               NOTIFY RunningProcessesChanged)
+    Q_PROPERTY(long UpTime READ UpTime NOTIFY DataChanged)
+    Q_PROPERTY(int totalProcesses READ TotalProcesses NOTIFY DataChanged)
+    Q_PROPERTY(int runningProcesses READ RunningProcesses NOTIFY DataChanged)
 
 public:
     explicit SystemInformation(QObject *parent = nullptr);
@@ -48,20 +48,16 @@ public:
     double BuffersInPercent();
     double SwapInPercent();
 
+    double CpuUtilizationInPercent();
+    QVector<double> CoreUtilizationsInPercent();
+
     long UpTime() const;
     int TotalProcesses() const;
     int RunningProcesses() const;
 
 signals:
-    void TotalUsedMemoryInPercentChanged();
-    void CachedMemoryInPercentChanged();
-    void NonCacheNonBufferMemoryInPercentChanged();
-    void BuffersInPercentChanged();
-    void SwapInPercentChanged();
+    void DataChanged();
 
-    void UpTimeChanged();
-    void TotalProcessesChanged();
-    void RunningProcessesChanged();
 
 protected:
     void timerEvent(QTimerEvent *event) override;
