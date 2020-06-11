@@ -15,7 +15,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        src/format.cpp \
         src/helper.cpp \
         src/linux/cpu_states.cpp \
         src/linux/l_memory.cpp \
@@ -49,7 +48,6 @@ DISTFILES += \
     images/application.png \
 
 HEADERS += \
-    include/format.h \
     include/helper.h \
     include/linux/cpu_states.h \
     include/linux/l_memory.h \
