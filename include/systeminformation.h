@@ -11,11 +11,11 @@ namespace Sysmon{
 class SystemInformation : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString kernel READ Kernel)
-    Q_PROPERTY(QString operatingSystem READ OperatingSystem)
-    Q_PROPERTY(long UpTime READ UpTime)
-    Q_PROPERTY(int totalProcesses READ TotalProcesses)
-    Q_PROPERTY(int runningProcesses READ RunningProcesses)
+    Q_PROPERTY(QString kernel READ Kernel CONSTANT)
+    Q_PROPERTY(QString operatingSystem READ OperatingSystem CONSTANT)
+    Q_PROPERTY(long UpTime READ UpTime CONSTANT)
+    Q_PROPERTY(int totalProcesses READ TotalProcesses CONSTANT)
+    Q_PROPERTY(int runningProcesses READ RunningProcesses CONSTANT)
 
 public:
     explicit SystemInformation(QObject *parent = nullptr);
