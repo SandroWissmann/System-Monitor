@@ -28,7 +28,7 @@ Window {
             width: root.elementWidth
             height: root.elementHeight
 
-            kernelName: "5.3.0-51-generic"
+            kernelName: sysinfo.kernel
         }
         CPUUtilizationDisplay{
             width: root.elementWidth
@@ -77,17 +77,10 @@ Window {
             width: root.elementWidth
             height: root.elementHeight
 
-            function set(){
-                console.log(sysinfo.totalUsedMemoryInPercent);
-                console.log(sysinfo.buffersInPercent);
-                console.log(sysinfo.cachedMemoryInPercent);
-                console.log(sysinfo.totalUsedMemoryInPercent);
-
-                nonCachedNonBufferValue = sysinfo.nonCacheNonBufferMemoryInPercent;
-                bufferValue = sysinfo.buffersInPercent;
-                cachedValue = sysinfo.cachedMemoryInPercent;
-                totalValue = sysinfo.totalUsedMemoryInPercent;
-            }
+            nonCachedNonBufferValue: sysinfo.nonCacheNonBufferMemoryInPercent
+            bufferValue: sysinfo.buffersInPercent
+            cachedValue: sysinfo.cachedMemoryInPercent
+            totalValue: sysinfo.totalUsedMemoryInPercent
 
             nonCachedNonBufferColor: "#3399FF"
             bufferValueColor: "yellow"
@@ -106,9 +99,7 @@ Window {
             minMaxTextColor: "#FF8000" // orange
 
 
-            function set(){
-                value = sysinfo.swapInPercent;
-            }
+            value: sysinfo.swapInPercent
         }
         TotalProcessesDisplay{
             id: totalProcessesDisplay
@@ -116,9 +107,7 @@ Window {
             width: root.elementWidth
             height: root.elementHeight
 
-            function set(){
-                countOfProcesses = sysinfo.totalProcesses
-            }
+            countOfProcesses: sysinfo.totalProcesses
         }
         RunningProcessesDisplay{
             id: runningProcessesDisplay
@@ -126,9 +115,7 @@ Window {
             width: root.elementWidth
             height: root.elementHeight
 
-            function set() {
-                countOfRunningProcesses = sysinfo.runningProcesses
-            }
+            countOfRunningProcesses: sysinfo.runningProcesses
         }
         UpTimeDisplay{
             id: upTimeDisplay
@@ -136,27 +123,8 @@ Window {
             width: root.elementWidth
             height: root.elementHeight
 
-            function set() {
-                upTimeInSeconds = sysinfo.UpTime
-            }
+            upTimeInSeconds: sysinfo.UpTime
         }
     }
 
-    function update()
-    {
-        memoryDisplay.set();
-        swapDisplay.set();
-        totalProcessesDisplay.set();
-        runningProcessesDisplay.set();
-        upTimeDisplay.set();
-    }
-
-    Timer {
-        id: updateTimer
-        interval: 1000
-        repeat: true
-        running: true
-        triggeredOnStart: true
-        onTriggered: update()
-    }
 }

@@ -1,63 +1,86 @@
 #include "../include/systeminformation.h"
 
+#include "../include/parser.h"
+
 namespace Sysmon{
 
 SystemInformation::SystemInformation(QObject *parent)
     : QObject(parent),
-      mSystem{System{}}
+      mKernel{QString::fromStdString(Parser::Kernel())},
+      mOperatingSystem{QString::fromStdString(Parser::OperatingSystem())},
+      mCpu{Processor::makeProcessor()},
+      mMemory{Memory::makeMemory()}
 {
+    startTimer(std::chrono::milliseconds{1000});
 }
 
 QString SystemInformation::Kernel() const
 {
-    return QString::fromUtf8(mSystem.Kernel().data(), mSystem.Kernel().size());
+    return mKernel;
 }
 
 QString SystemInformation::OperatingSystem() const
 {
-    return QString::fromUtf8(mSystem.OperatingSystem().data(),
-                             mSystem.OperatingSystem().size());
+    return mOperatingSystem;
 }
 
 double SystemInformation::TotalUsedMemoryInPercent()
 {
-    return mSystem.MemoryUtilization()->TotalUsedMemoryInPercent() * 100.0;
+    return mMemory->TotalUsedMemoryInPercent() * 100.0;
 }
 
 double SystemInformation::CachedMemoryInPercent()
 {
-    return mSystem.MemoryUtilization()->CachedMemoryInPercent() * 100.0;
+    return mMemory->CachedMemoryInPercent() * 100.0;
 }
 
 double SystemInformation::NonCacheNonBufferMemoryInPercent()
 {
     return
-        mSystem.MemoryUtilization()->NonCacheNonBufferMemoryInPercent() * 100.0;
+        mMemory->NonCacheNonBufferMemoryInPercent() * 100.0;
 }
 
 double SystemInformation::BuffersInPercent()
 {
-    return mSystem.MemoryUtilization()->BuffersInPercent() * 100.0;
+    return mMemory->BuffersInPercent() * 100.0;
 }
 
 double SystemInformation::SwapInPercent()
 {
-    return mSystem.MemoryUtilization()->SwapInPercent() * 100.0;
+    return mMemory->SwapInPercent() * 100.0;
 }
 
 long SystemInformation::UpTime() const
 {
-    return mSystem.UpTime();
+    return Parser::UpTime();
 }
 
 int SystemInformation::TotalProcesses() const
 {
-    return mSystem.TotalProcesses();
+    return Parser::TotalProcesses();
 }
 
 int SystemInformation::RunningProcesses() const
 {
-    return mSystem.RunningProcesses();
+    return Parser::RunningProcesses();
+}
+
+void SystemInformation::timerEvent(QTimerEvent *event)
+{
+    Q_UNUSED(event);
+
+    mCpu = Processor::makeProcessor();
+    mMemory = Memory::makeMemory();
+
+    emit TotalUsedMemoryInPercentChanged();
+    emit CachedMemoryInPercentChanged();
+    emit NonCacheNonBufferMemoryInPercentChanged();
+    emit BuffersInPercentChanged();
+    emit SwapInPercentChanged();
+
+    emit UpTimeChanged();
+    emit TotalProcessesChanged();
+    emit RunningProcessesChanged();
 }
 
 
