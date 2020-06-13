@@ -15,7 +15,7 @@ Item {
 
         height: root.height
 
-        textString: "Swap: "
+        textString: qsTr("Swap: ")
         value: root.value
     }
 }

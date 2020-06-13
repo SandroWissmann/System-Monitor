@@ -33,7 +33,7 @@ Item {
         font.pointSize: parent.fontSize
         color: parent.minMaxTextColor
 
-        text: "0% "
+        text: qsTr("0% ")
     }
 
     function normalizeValue(value)
@@ -72,6 +72,6 @@ Item {
         font.pointSize: parent.fontSize
         color: root.minMaxTextColor
 
-        text: parseFloat(value).toFixed(1) + "/100.0% "
+        text: qsTr(parseFloat(value).toFixed(1) + "/100.0% ")
     }
 }

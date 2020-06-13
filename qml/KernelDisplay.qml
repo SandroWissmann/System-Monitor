@@ -9,6 +9,6 @@ Item {
 
         font.pointSize: parent.height - 6
 
-        text: "Kernel: " + parent.kernelName
+        text: qsTr("Kernel: " + parent.kernelName)
     }
 }

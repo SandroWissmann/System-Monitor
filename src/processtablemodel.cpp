@@ -65,17 +65,17 @@ QVariant ProcessTableModel::headerData(int section, Qt::Orientation orientation,
     if(role == Qt::DisplayRole) {
         switch(section) {
         case pidColumn:
-            return "PID";
+            return tr("PID");
         case userColumn:
-            return "USER";
+            return tr("USER");
         case cpuUtilizationColumn:
-            return "CPU[%]";
+            return tr("CPU[%]");
         case ramInMbColumn:
-            return "RAM[MB]";
+            return tr("RAM[MB]");
         case upTimeColumn:
-            return "TIME+";
+            return tr("TIME+");
         case commandColumn:
-            return "COMMAND";
+            return tr("COMMAND");
         }
     }
     return QVariant{};

@@ -6,6 +6,6 @@ Item {
     Text{
         font.pointSize: parent.height - 6
 
-        text: "Total Processes: " + parent.countOfProcesses
+        text: qsTr("Total Processes: " + parent.countOfProcesses)
     }
 }

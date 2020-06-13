@@ -16,7 +16,7 @@ Item {
 
         height: root.height
 
-        textString: "CPU: "
+        textString: qsTr("CPU: ")
         value: root.value
     }
 }

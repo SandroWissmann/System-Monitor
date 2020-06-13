@@ -6,7 +6,7 @@ Item {
     Text{
         font.pointSize: parent.height - 6
 
-        text: "Up Time: " + elapsedTimeAsString(parent.upTimeInSeconds);
+        text: qsTr("Up Time: " + elapsedTimeAsString(parent.upTimeInSeconds));
     }
 
     function elapsedTimeAsString(seconds)

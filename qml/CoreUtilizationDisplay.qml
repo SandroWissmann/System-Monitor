@@ -18,7 +18,7 @@ Item {
 
         height: root.height
 
-        textString: "Core" + core + ": "
+        textString: qsTr("Core" + core + ": ")
         value: root.value
     }
 }

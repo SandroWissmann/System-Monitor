@@ -25,7 +25,7 @@ Item {
 
         font.pointSize: parent.fontSize
 
-        text: "Memory: "
+        text: qsTr("Memory: ")
     }
 
     Text{
@@ -38,7 +38,7 @@ Item {
         font.pointSize: parent.fontSize
         color: root.minMaxTextColor
 
-        text: "0% "
+        text: qsTr("0% ")
     }
 
     MemoryProgressBar{
@@ -67,6 +67,6 @@ Item {
         font.pointSize: parent.fontSize
         color: root.minMaxTextColor
 
-        text: parseFloat(totalValue).toFixed(1) + "/100.0% "
+        text: qsTr(parseFloat(totalValue).toFixed(1) + "/100.0% ")
     }
 }

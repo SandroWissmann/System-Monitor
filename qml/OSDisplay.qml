@@ -8,7 +8,7 @@ Item {
 
         font.pointSize: parent.height - 6
 
-        text: "OS: " + parent.osName
+        text: qsTr("OS: " + parent.osName)
     }
 }
 
