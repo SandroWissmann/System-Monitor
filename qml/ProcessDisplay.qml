@@ -29,15 +29,6 @@ Item {
             }
         }
 
-        Rectangle { // mask the headers
-            z: 3
-            color: "#222222"
-            y: tableView.contentY
-            x: tableView.contentX
-            width: tableView.leftMargin
-            height: tableView.topMargin
-        }
-
         Row {
             id: columnsHeader
             y: tableView.contentY
