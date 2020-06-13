@@ -3,6 +3,7 @@
 #include <QQmlContext>
 
 #include "include/systeminformation.h"
+#include "include/processtablemodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -14,7 +15,8 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<Sysmon::SystemInformation>("com.sysmon", 1, 0,
                                                "SystemInformation");
-
+    qmlRegisterType<Sysmon::ProcessTableModel>("com.sysmon", 1, 0,
+                                              "ProcessTableModel");
 
     const QUrl url(QStringLiteral("qrc:/qml/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
