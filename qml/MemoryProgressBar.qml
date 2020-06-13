@@ -10,51 +10,56 @@ Item {
     property string cachedColor: "green"
     property string emptyColor: "lightgray"
 
+    readonly property int itemBorderWidth: 2
+
     Rectangle{
         id: nonCachedNonBufferRectangle
 
         height: parent.height
-        width: calcCachedNonBufferRectangleWidth();
+        width: calcCachedNonBufferRectangleWidth() + itemBorderWidth;
 
         color: nonCachedNonBufferColor
         border.color: "black"
-        border.width: 2
+        border.width: itemBorderWidth
     }
     Rectangle{
         id: bufferRectangle
 
         anchors.left: nonCachedNonBufferRectangle.right
+        anchors.leftMargin: -itemBorderWidth
 
         height: parent.height
-        width: calcBufferValueRectangleWidth();
+        width: calcBufferValueRectangleWidth() + itemBorderWidth;
 
         color: bufferValueColor
         border.color: "black"
-        border.width: 2
+        border.width: itemBorderWidth
     }
     Rectangle{
         id: cachedRectangle
 
         anchors.left: bufferRectangle.right
+        anchors.leftMargin: -itemBorderWidth
 
         height: parent.height
-        width: calcCachedValueRectangleWidth();
+        width: calcCachedValueRectangleWidth() + itemBorderWidth;
 
         color: cachedColor
         border.color: "black"
-        border.width: 2
+        border.width: itemBorderWidth
     }
     Rectangle{
         id: emptyRectangle
 
         anchors.left: cachedRectangle.right
+        anchors.leftMargin: -itemBorderWidth
 
         height: parent.height
-        width: calcEmptyRectangleWidth();
+        width: calcEmptyRectangleWidth() + 3 * itemBorderWidth;
 
         color: emptyColor
         border.color: "black"
-        border.width: 2
+        border.width: itemBorderWidth
     }
 
     function calcCachedNonBufferRectangleWidth()
