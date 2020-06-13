@@ -3,12 +3,20 @@ import QtQuick.Controls 2.15
 import com.sysmon 1.0
 
 Item {
+    id: root
+
     TableView {
         id: tableView
 
-        columnWidthProvider: function (column) { return 100; }
+        columnWidthProvider: function (column) {
+            if(column === 5){
+                return tableView.width
+            }
+            return 100;
+        }
 
         anchors.fill: parent
+        boundsBehavior: Flickable.StopAtBounds
 
         topMargin: columnsHeader.implicitHeight
 
@@ -34,7 +42,7 @@ Item {
             y: tableView.contentY
             z: 2
             Repeater {
-                model: tableView.columns > 0 ? tableView.columns : 1
+                model: tableView.columns
                 Label {
                     width: tableView.columnWidthProvider(modelData)
                     height: 35

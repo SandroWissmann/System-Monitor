@@ -6,6 +6,7 @@ Item {
 
     property string progressBarColor: "black"
     property string minMaxTextColor: "black"
+    property int fontSize: height - 6
 
     TextWithPercentageProgressBar{
         id: swapProgressBar
@@ -15,6 +16,7 @@ Item {
 
         height: root.height
         width: root.width
+        fontSize: root.fontSize
 
         textString: qsTr("Swap: ")
         value: root.value

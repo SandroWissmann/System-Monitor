@@ -7,6 +7,7 @@ Item {
 
     readonly property int elementWidth: root.width
     readonly property int elementHeight: 20
+    property int fontSize: elementHeight - 8
 
     SystemInformation{
         id: sysinfo
@@ -18,17 +19,21 @@ Item {
         OSDisplay{
             width: root.elementWidth
             height: root.elementHeight
+            fontSize: root.fontSize
+
             osName: sysinfo.operatingSystem
         }
         KernelDisplay{
             width: root.elementWidth
             height: root.elementHeight
+            fontSize: root.fontSize
 
             kernelName: sysinfo.kernel
         }
         CPUUtilizationDisplay{
             width: root.elementWidth
             height: root.elementHeight
+            fontSize: root.fontSize
 
             progressBarColor: "#3399FF" // blue
             minMaxTextColor: "blue"
@@ -41,12 +46,13 @@ Item {
             CoreUtilizationDisplay{
                 width: root.elementWidth
                 height: root.elementHeight
-                core: index + 1
-
-                value: sysinfo.coreUtilizationsInPercent[index]
+                fontSize: root.fontSize
 
                 progressBarColor: "#3399FF" // blue
                 minMaxTextColor: "blue"
+
+                core: index + 1
+                value: sysinfo.coreUtilizationsInPercent[index]
             }
         }
         MemoryDisplay{
@@ -54,11 +60,7 @@ Item {
 
             width: root.elementWidth
             height: root.elementHeight
-
-            nonCachedNonBufferValue: sysinfo.nonCacheNonBufferMemoryInPercent
-            bufferValue: sysinfo.buffersInPercent
-            cachedValue: sysinfo.cachedMemoryInPercent
-            totalValue: sysinfo.totalUsedMemoryInPercent
+            fontSize: root.fontSize
 
             nonCachedNonBufferColor: "#3399FF"
             bufferValueColor: "yellow"
@@ -66,16 +68,21 @@ Item {
             emptyColor: "lightgray"
             minMaxTextColor: "blue"
 
+            nonCachedNonBufferValue: sysinfo.nonCacheNonBufferMemoryInPercent
+            bufferValue: sysinfo.buffersInPercent
+            cachedValue: sysinfo.cachedMemoryInPercent
+            totalValue: sysinfo.totalUsedMemoryInPercent
+
         }
         SwapDisplay{
             id: swapDisplay
 
             width: root.elementWidth
             height: root.elementHeight
+            fontSize: root.fontSize
 
             progressBarColor: "#FF9933" // orange
             minMaxTextColor: "#FF8000" // orange
-
 
             value: sysinfo.swapInPercent
         }
@@ -84,6 +91,7 @@ Item {
 
             width: root.elementWidth
             height: root.elementHeight
+            fontSize: root.fontSize
 
             countOfProcesses: sysinfo.totalProcesses
         }
@@ -92,6 +100,7 @@ Item {
 
             width: root.elementWidth
             height: root.elementHeight
+            fontSize: root.fontSize
 
             countOfRunningProcesses: sysinfo.runningProcesses
         }
@@ -100,6 +109,7 @@ Item {
 
             width: root.elementWidth
             height: root.elementHeight
+            fontSize: root.fontSize
 
             upTimeInSeconds: sysinfo.UpTime
         }

@@ -1,14 +1,17 @@
 import QtQuick 2.15
 
 Item {
+    id: root
+
     property string osName: ""
+    property int fontSize: height - 6
 
     Text{
         id: osText
 
-        font.pointSize: parent.height - 6
+        font.pointSize: root.fontSize
 
-        text: qsTr("OS: " + parent.osName)
+        text: qsTr("OS: " + root.osName)
     }
 }
 

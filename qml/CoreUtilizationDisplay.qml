@@ -9,6 +9,7 @@ Item {
 
     property string progressBarColor: "black"
     property string minMaxTextColor: "black"
+    property int fontSize: height - 6
 
     TextWithPercentageProgressBar{
         id: utilizationProgressBar
@@ -21,5 +22,7 @@ Item {
 
         textString: qsTr("Core" + core + ": ")
         value: root.value
+
+        fontSize: root.fontSize
     }
 }
