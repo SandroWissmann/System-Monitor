@@ -46,7 +46,7 @@ Item {
 
         anchors.left: minPercentageText.right
 
-        implicitWidth: 300
+        implicitWidth: calcProgresBarWidth()
         implicitHeight: minPercentageText.height
 
         nonCachedNonBufferValue: parent.nonCachedNonBufferValue
@@ -64,9 +64,17 @@ Item {
 
         anchors.left: progressBar.right
 
+        width: 100
+
         font.pointSize: parent.fontSize
         color: root.minMaxTextColor
 
         text: qsTr(parseFloat(totalValue).toFixed(1) + "/100.0% ")
+    }
+
+    function calcProgresBarWidth()
+    {
+        return width - descriptionText.width - minPercentageText.width
+            -maxPercentageText.width;
     }
 }

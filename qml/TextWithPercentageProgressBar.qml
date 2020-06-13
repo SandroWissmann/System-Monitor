@@ -53,7 +53,7 @@ Item {
                 color: "lightgray"
                 border.color: "black"
                 border.width: 2
-                implicitWidth: 300
+                implicitWidth: calcProgresBarWidth();
                 implicitHeight: minPercentageText.height
             }
             progress: Rectangle {
@@ -69,9 +69,17 @@ Item {
 
         anchors.left: progressBar.right
 
+        width: 100
+
         font.pointSize: parent.fontSize
         color: root.minMaxTextColor
 
         text: qsTr(parseFloat(value).toFixed(1) + "/100.0% ")
+    }
+
+    function calcProgresBarWidth()
+    {
+        return width - descriptionText.width - minPercentageText.width
+            -maxPercentageText.width;
     }
 }

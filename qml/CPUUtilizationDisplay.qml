@@ -15,6 +15,7 @@ Item {
         minMaxTextColor: parent.minMaxTextColor
 
         height: root.height
+        width: root.width
 
         textString: qsTr("CPU: ")
         value: root.value

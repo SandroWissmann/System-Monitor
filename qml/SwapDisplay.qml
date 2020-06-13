@@ -14,6 +14,7 @@ Item {
         minMaxTextColor: parent.minMaxTextColor
 
         height: root.height
+        width: root.width
 
         textString: qsTr("Swap: ")
         value: root.value

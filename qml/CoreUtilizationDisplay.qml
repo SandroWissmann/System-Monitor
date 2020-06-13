@@ -17,6 +17,7 @@ Item {
         minMaxTextColor: root.minMaxTextColor
 
         height: root.height
+        width: root.width
 
         textString: qsTr("Core" + core + ": ")
         value: root.value
