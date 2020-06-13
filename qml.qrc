@@ -12,5 +12,6 @@
         <file>qml/TotalProcessesDisplay.qml</file>
         <file>qml/UpTimeDisplay.qml</file>
         <file>qml/MemoryProgressBar.qml</file>
+        <file>qml/SystemInformationDisplay.qml</file>
     </qresource>
 </RCC>
