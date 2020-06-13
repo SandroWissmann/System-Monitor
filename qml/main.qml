@@ -1,7 +1,9 @@
 import QtQuick 2.15
+import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
-import Qt.labs.qmlmodels 1.0
 import com.sysmon 1.0
+
+
 
 Window {
     id: root
@@ -14,138 +16,157 @@ Window {
     readonly property int elementWidth: root.width
     readonly property int elementHeight: 20
 
-    SystemInformation{
-        id: sysinfo
-    }
+//    SystemInformation{
+//        id: sysinfo
+//    }
 
-    Column{
-        id: column
+//    Column{
+//        id: displayColumn
 
-        OSDisplay{
-            width: root.elementWidth
-            height: root.elementHeight
-            osName: sysinfo.operatingSystem
-        }
-        KernelDisplay{
-            width: root.elementWidth
-            height: root.elementHeight
+//        OSDisplay{
+//            width: root.elementWidth
+//            height: root.elementHeight
+//            osName: sysinfo.operatingSystem
+//        }
+//        KernelDisplay{
+//            width: root.elementWidth
+//            height: root.elementHeight
 
-            kernelName: sysinfo.kernel
-        }
-        CPUUtilizationDisplay{
-            width: root.elementWidth
-            height: root.elementHeight
+//            kernelName: sysinfo.kernel
+//        }
+//        CPUUtilizationDisplay{
+//            width: root.elementWidth
+//            height: root.elementHeight
 
-            progressBarColor: "#3399FF" // blue
-            minMaxTextColor: "blue"
+//            progressBarColor: "#3399FF" // blue
+//            minMaxTextColor: "blue"
 
-            value: sysinfo.cpuUtilizationInPercent
-        }
-        Repeater{
-            model: sysinfo.coreUtilizationsInPercent.length
+//            value: sysinfo.cpuUtilizationInPercent
+//        }
+//        Repeater{
+//            model: sysinfo.coreUtilizationsInPercent.length
 
-            CoreUtilizationDisplay{
-                width: root.elementWidth
-                height: root.elementHeight
-                core: index + 1
+//            CoreUtilizationDisplay{
+//                width: root.elementWidth
+//                height: root.elementHeight
+//                core: index + 1
 
-                value: sysinfo.coreUtilizationsInPercent[index]
+//                value: sysinfo.coreUtilizationsInPercent[index]
 
-                progressBarColor: "#3399FF" // blue
-                minMaxTextColor: "blue"
-            }
-        }
-        MemoryDisplay{
-            id: memoryDisplay
+//                progressBarColor: "#3399FF" // blue
+//                minMaxTextColor: "blue"
+//            }
+//        }
+//        MemoryDisplay{
+//            id: memoryDisplay
 
-            width: root.elementWidth
-            height: root.elementHeight
+//            width: root.elementWidth
+//            height: root.elementHeight
 
-            nonCachedNonBufferValue: sysinfo.nonCacheNonBufferMemoryInPercent
-            bufferValue: sysinfo.buffersInPercent
-            cachedValue: sysinfo.cachedMemoryInPercent
-            totalValue: sysinfo.totalUsedMemoryInPercent
+//            nonCachedNonBufferValue: sysinfo.nonCacheNonBufferMemoryInPercent
+//            bufferValue: sysinfo.buffersInPercent
+//            cachedValue: sysinfo.cachedMemoryInPercent
+//            totalValue: sysinfo.totalUsedMemoryInPercent
 
-            nonCachedNonBufferColor: "#3399FF"
-            bufferValueColor: "yellow"
-            cachedColor: "green"
-            emptyColor: "lightgray"
-            minMaxTextColor: "blue"
+//            nonCachedNonBufferColor: "#3399FF"
+//            bufferValueColor: "yellow"
+//            cachedColor: "green"
+//            emptyColor: "lightgray"
+//            minMaxTextColor: "blue"
 
-        }
-        SwapDisplay{
-            id: swapDisplay
+//        }
+//        SwapDisplay{
+//            id: swapDisplay
 
-            width: root.elementWidth
-            height: root.elementHeight
+//            width: root.elementWidth
+//            height: root.elementHeight
 
-            progressBarColor: "#FF9933" // orange
-            minMaxTextColor: "#FF8000" // orange
+//            progressBarColor: "#FF9933" // orange
+//            minMaxTextColor: "#FF8000" // orange
 
 
-            value: sysinfo.swapInPercent
-        }
-        TotalProcessesDisplay{
-            id: totalProcessesDisplay
+//            value: sysinfo.swapInPercent
+//        }
+//        TotalProcessesDisplay{
+//            id: totalProcessesDisplay
 
-            width: root.elementWidth
-            height: root.elementHeight
+//            width: root.elementWidth
+//            height: root.elementHeight
 
-            countOfProcesses: sysinfo.totalProcesses
-        }
-        RunningProcessesDisplay{
-            id: runningProcessesDisplay
+//            countOfProcesses: sysinfo.totalProcesses
+//        }
+//        RunningProcessesDisplay{
+//            id: runningProcessesDisplay
 
-            width: root.elementWidth
-            height: root.elementHeight
+//            width: root.elementWidth
+//            height: root.elementHeight
 
-            countOfRunningProcesses: sysinfo.runningProcesses
-        }
-        UpTimeDisplay{
-            id: upTimeDisplay
+//            countOfRunningProcesses: sysinfo.runningProcesses
+//        }
+//        UpTimeDisplay{
+//            id: upTimeDisplay
 
-            width: root.elementWidth
-            height: root.elementHeight
+//            width: root.elementWidth
+//            height: root.elementHeight
 
-            upTimeInSeconds: sysinfo.UpTime
-        }
-    }
-
+//            upTimeInSeconds: sysinfo.UpTime
+//        }
+//    }
 
     TableView {
+        id: tableView
+
+        columnWidthProvider: function (column) { return 100; }
+
         anchors.fill: parent
-        columnSpacing: 1
-        rowSpacing: 1
+
+        topMargin: columnsHeader.implicitHeight
+
+        model: ProcessTableModel {
+            id: processTableModel
+        }
+
+        ScrollBar.vertical: ScrollBar {
+            policy: ScrollBar.AlwaysOn
+        }
         clip: true
 
-        model: TableModel {
-            TableModelColumn { display: "name" }
-            TableModelColumn { display: "color" }
-
-            rows: [
-                {
-                    "name": "cat",
-                    "color": "black"
-                },
-                {
-                    "name": "dog",
-                    "color": "brown"
-                },
-                {
-                    "name": "bird",
-                    "color": "white"
-                }
-            ]
-        }
-
         delegate: Rectangle {
-            implicitWidth: 100
-            implicitHeight: 50
-            border.width: 1
-
+            implicitWidth: 80
+            implicitHeight: 20
             Text {
                 text: display
-                anchors.centerIn: parent
             }
         }
+
+        Rectangle { // mask the headers
+            z: 3
+            color: "#222222"
+            y: tableView.contentY
+            x: tableView.contentX
+            width: tableView.leftMargin
+            height: tableView.topMargin
+        }
+
+
+        Row {
+            id: columnsHeader
+            y: tableView.contentY
+            z: 2
+            Repeater {
+                model: tableView.columns > 0 ? tableView.columns : 1
+                Label {
+                    width: tableView.columnWidthProvider(modelData)
+                    height: 35
+                    text: processTableModel.headerData(modelData, Qt.Horizontal)
+                    color: "green"
+                    verticalAlignment: Text.AlignVCenter
+
+                    background: Rectangle { color: "#FFFFFF" }
+                }
+            }
+        }
+
+        ScrollIndicator.horizontal: ScrollIndicator { }
+    }
 }
