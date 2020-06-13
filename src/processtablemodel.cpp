@@ -33,7 +33,7 @@ int ProcessTableModel::columnCount(const QModelIndex &parent) const
 
 QVariant ProcessTableModel::data(const QModelIndex &index, int role) const
 {
-    if(role == Qt::DisplayRole){
+    if(role == Qt::DisplayRole) {
         switch(index.column()) {
         case pidColumn:
             return mProcesses[index.row()]->Pid();
@@ -50,6 +50,32 @@ QVariant ProcessTableModel::data(const QModelIndex &index, int role) const
             return toFormatedTime(mProcesses[index.row()]->UpTime());
         case commandColumn:
             return QString::fromStdString(mProcesses[index.row()]->Command());
+        }
+    }
+    return QVariant{};
+}
+
+QVariant ProcessTableModel::headerData(int section, Qt::Orientation orientation,
+                                       int role) const
+{
+    if(orientation == Qt::Orientation::Vertical) {
+        return QVariant{};
+    }
+
+    if(role == Qt::DisplayRole) {
+        switch(section) {
+        case pidColumn:
+            return "PID";
+        case userColumn:
+            return "USER";
+        case cpuUtilizationColumn:
+            return "CPU[%]";
+        case ramInMbColumn:
+            return "RAM[MB]";
+        case upTimeColumn:
+            return "TIME+";
+        case commandColumn:
+            return "COMMAND";
         }
     }
     return QVariant{};
