@@ -13,5 +13,6 @@
         <file>qml/UpTimeDisplay.qml</file>
         <file>qml/MemoryProgressBar.qml</file>
         <file>qml/SystemInformationDisplay.qml</file>
+        <file>qml/ProcessDisplay.qml</file>
     </qresource>
 </RCC>
