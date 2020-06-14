@@ -30,6 +30,6 @@ class CpuStates {
 
 std::istream& operator>>(std::istream& is, CpuStates& obj);
 
-}  // namespace Linux
+}  // namespace Sysmon::Linux
 
 #endif

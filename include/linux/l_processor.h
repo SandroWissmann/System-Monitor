@@ -39,6 +39,6 @@ class Processor : public ::Sysmon::Processor {
     static std::optional<CpuStates> parseCpuState(const std::string line);
 };
 
-}  // namespace Linux
+}  // namespace Sysmon::Linux
 
 #endif

@@ -5,14 +5,13 @@
 
 #include <memory>
 
-namespace Sysmon{
+namespace Sysmon {
 
 class Process;
 
-class ProcessTableModel : public QAbstractTableModel
-{
+class ProcessTableModel : public QAbstractTableModel {
     Q_OBJECT
-public:
+   public:
     ProcessTableModel(QObject *parent = nullptr);
 
     int rowCount(const QModelIndex &parent) const override;
@@ -21,10 +20,10 @@ public:
     Q_INVOKABLE QVariant headerData(int section, Qt::Orientation orientation,
                                     int role = Qt::DisplayRole) const override;
 
-protected:
+   protected:
     void timerEvent(QTimerEvent *event) override;
 
-private:
+   private:
     QVector<std::shared_ptr<Process>> updateProcesses();
 
     QVector<std::shared_ptr<Process>> mProcesses = {};
@@ -32,8 +31,8 @@ private:
 
 QString toFormatedTime(long seconds);
 
-QString fillWithNLeadingSigns(const QString& s, int minSize, char sign);
+QString fillWithNLeadingSigns(const QString &s, int minSize, char sign);
 
-}
+}  // namespace Sysmon
 
-#endif // PROCESSTABLEMODEL_H
+#endif  // PROCESSTABLEMODEL_H

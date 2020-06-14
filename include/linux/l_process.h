@@ -39,6 +39,6 @@ long ReadUpTimeFromFile(int pid);
 long ParseProcessUptimeFromLine(const std::string& line);
 long ClockTicksToSecond(long clockTicks);
 
-}  // namespace Linux
+}  // namespace Sysmon::Linux
 
 #endif

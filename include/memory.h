@@ -3,7 +3,7 @@
 
 #include <memory>
 
-namespace Sysmon{
+namespace Sysmon {
 
 class Memory {
    public:
@@ -18,6 +18,6 @@ class Memory {
     static std::shared_ptr<Memory> makeMemory();
 };
 
-}
+}  // namespace Sysmon
 
 #endif

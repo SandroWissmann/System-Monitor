@@ -4,7 +4,7 @@
 #include <memory>
 #include <string>
 
-namespace Sysmon{
+namespace Sysmon {
 
 class Process {
    public:
@@ -19,6 +19,6 @@ class Process {
     static std::shared_ptr<Process> makeProcess(int pid);
 };
 
-}
+}  // namespace Sysmon
 
 #endif

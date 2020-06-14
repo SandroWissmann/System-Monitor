@@ -4,7 +4,7 @@
 #include <memory>
 #include <vector>
 
-namespace Sysmon{
+namespace Sysmon {
 
 class Processor {
    public:
@@ -16,6 +16,6 @@ class Processor {
     static std::shared_ptr<Processor> makeProcessor();
 };
 
-}
+}  // namespace Sysmon
 
 #endif

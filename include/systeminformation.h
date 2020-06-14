@@ -9,35 +9,33 @@
 #include <QString>
 #include <QVector>
 
-namespace Sysmon{
+namespace Sysmon {
 
-class SystemInformation : public QObject
-{
+class SystemInformation : public QObject {
     Q_OBJECT
     Q_PROPERTY(QString kernel READ Kernel CONSTANT)
     Q_PROPERTY(QString operatingSystem READ OperatingSystem CONSTANT)
 
     Q_PROPERTY(double totalUsedMemoryInPercent READ TotalUsedMemoryInPercent
-               NOTIFY DataChanged)
-    Q_PROPERTY(double cachedMemoryInPercent READ CachedMemoryInPercent
-               NOTIFY DataChanged)
-    Q_PROPERTY(double nonCacheNonBufferMemoryInPercent
-               READ NonCacheNonBufferMemoryInPercent NOTIFY DataChanged)
+                   NOTIFY DataChanged)
+    Q_PROPERTY(double cachedMemoryInPercent READ CachedMemoryInPercent NOTIFY
+                   DataChanged)
+    Q_PROPERTY(double nonCacheNonBufferMemoryInPercent READ
+                   NonCacheNonBufferMemoryInPercent NOTIFY DataChanged)
     Q_PROPERTY(double buffersInPercent READ BuffersInPercent NOTIFY DataChanged)
     Q_PROPERTY(double swapInPercent READ SwapInPercent NOTIFY DataChanged)
 
     Q_PROPERTY(double cpuUtilizationInPercent READ CpuUtilizationInPercent
-               NOTIFY DataChanged)
-    Q_PROPERTY(QVector<double> coreUtilizationsInPercent
-               READ CoreUtilizationsInPercent NOTIFY DataChanged)
+                   NOTIFY DataChanged)
+    Q_PROPERTY(QVector<double> coreUtilizationsInPercent READ
+                   CoreUtilizationsInPercent NOTIFY DataChanged)
 
     Q_PROPERTY(long UpTime READ UpTime NOTIFY DataChanged)
     Q_PROPERTY(int totalProcesses READ TotalProcesses NOTIFY DataChanged)
     Q_PROPERTY(int runningProcesses READ RunningProcesses NOTIFY DataChanged)
 
-public:
+   public:
     explicit SystemInformation(QObject *parent = nullptr);
-
 
     QString Kernel() const;
     QString OperatingSystem() const;
@@ -55,14 +53,13 @@ public:
     int TotalProcesses() const;
     int RunningProcesses() const;
 
-signals:
+   signals:
     void DataChanged();
 
-
-protected:
+   protected:
     void timerEvent(QTimerEvent *event) override;
 
-private:
+   private:
     const QString mKernel;
     const QString mOperatingSystem;
 
@@ -70,6 +67,6 @@ private:
     std::shared_ptr<Memory> mMemory;
 };
 
-}
+}  // namespace Sysmon
 
-#endif // SYSTEMINFORMATION_H
+#endif  // SYSTEMINFORMATION_H

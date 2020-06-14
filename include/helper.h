@@ -20,6 +20,6 @@ bool IsNumber(const std::string& s);
 
 std::string ReadFirstLineFromFile(const std::string& filename);
 
-}  // namespace Helper
+}  // namespace Sysmon::Helper
 
 #endif

@@ -15,6 +15,6 @@ long UpTime();
 int TotalProcesses();
 int RunningProcesses();
 
-}  // namespace Linux::Parser
+}  // namespace Sysmon::Linux::Parser
 
 #endif

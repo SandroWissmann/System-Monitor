@@ -36,6 +36,6 @@ class Memory : public ::Sysmon::Memory {
 
 std::istream& operator>>(std::istream& is, Memory& obj);
 
-}  // namespace Linux
+}  // namespace Sysmon::Linux
 
 #endif

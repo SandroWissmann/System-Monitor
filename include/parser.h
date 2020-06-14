@@ -19,5 +19,5 @@ int RunningProcesses();
 std::string OperatingSystem();
 std::string Kernel();
 
-};  // namespace Parser
+};  // namespace Sysmon::Parser
 #endif
