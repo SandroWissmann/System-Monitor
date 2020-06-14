@@ -15,19 +15,18 @@ Window {
 
     readonly property int systemInformationDisplayHeight: 240;
 
-    Column{
-        SystemInformationDisplay{
-            id: systemInformationDisplay
+    SystemInformationDisplay{
+        id: systemInformationDisplay
 
-            width: root.width
-            height: systemInformationDisplayHeight;
-        }
+        width: root.width
+    }
 
-        ProcessDisplay{
-            id: processDisplay
+    ProcessDisplay{
+        anchors.top: systemInformationDisplay.bottom
 
-            width: root.width
-            height: root.height - systemInformationDisplayHeight;
-        }
+        id: processDisplay
+
+        width: root.width
+        height: root.height - systemInformationDisplayHeight;
     }
 }
