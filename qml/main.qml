@@ -13,12 +13,13 @@ Window {
     height: 480
     title: qsTr("System Monitor")
 
-    readonly property int systemInformationDisplayHeight: 240;
 
     SystemInformationDisplay{
         id: systemInformationDisplay
 
         width: root.width
+        height: 240
+
     }
 
     ProcessDisplay{
@@ -27,6 +28,8 @@ Window {
         id: processDisplay
 
         width: root.width
-        height: root.height - systemInformationDisplayHeight;
+        height: root.height - systemInformationDisplay.height;
     }
+
+
 }
