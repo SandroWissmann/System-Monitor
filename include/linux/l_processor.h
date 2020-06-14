@@ -7,9 +7,9 @@
 #include <iosfwd>
 #include <optional>
 
-namespace Linux {
+namespace Sysmon::Linux {
 
-class Processor : public ::Processor {
+class Processor : public ::Sysmon::Processor {
    public:
     Processor() = default;
     Processor(const CpuStates& firstCpuState, const CpuStates& secondCpuState,

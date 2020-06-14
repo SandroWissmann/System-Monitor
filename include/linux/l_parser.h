@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-namespace Linux::Parser {
+namespace Sysmon::Linux::Parser {
 
 // System
 std::string OperatingSystem();

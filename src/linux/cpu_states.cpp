@@ -1,11 +1,11 @@
-#include "cpu_states.h"
+#include "../../include/linux/cpu_states.h"
 
-#include "../helper.h"
+#include "../../include/helper.h"
 
 #include <iostream>
 #include <regex>
 
-namespace Linux {
+namespace Sysmon::Linux {
 
 CpuStates::CpuStates(long user, long nice, long system, long idle, long iowait,
                      long irq, long softfIrq, long steal, long guest,

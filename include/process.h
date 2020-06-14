@@ -4,6 +4,8 @@
 #include <memory>
 #include <string>
 
+namespace Sysmon{
+
 class Process {
    public:
     virtual int Pid() const = 0;
@@ -16,5 +18,7 @@ class Process {
 
     static std::shared_ptr<Process> makeProcess(int pid);
 };
+
+}
 
 #endif

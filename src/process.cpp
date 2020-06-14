@@ -1,6 +1,8 @@
-#include "process.h"
+#include "../include/process.h"
 
-#include "linux/process.h"
+#include "../include/linux/l_process.h"
+
+namespace Sysmon{
 
 bool Process::operator<(const Process& a) const {
     return CpuUtilization() < a.CpuUtilization();
@@ -12,4 +14,6 @@ std::shared_ptr<Process> Process::makeProcess(int pid) {
     return std::move(std::make_unique<Linux::Process>(process));
 #elif _WIN32
 #endif
+}
+
 }

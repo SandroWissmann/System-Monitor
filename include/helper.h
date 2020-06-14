@@ -4,7 +4,7 @@
 #include <optional>
 #include <string>
 
-namespace Helper {
+namespace Sysmon::Helper {
 
 // Helper functions
 template <typename ValueType>

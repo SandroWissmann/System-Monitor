@@ -1,6 +1,6 @@
-#include "../linux/processor.h"
+#include "../../include/linux/l_processor.h"
 
-#include "cpu_states.h"
+#include "../../include/linux/cpu_states.h"
 
 #include <cassert>
 #include <fstream>
@@ -8,7 +8,7 @@
 #include <sstream>
 #include <thread>
 
-namespace Linux {
+namespace Sysmon::Linux {
 
 const std::string kProcDirectory{"/proc/"};
 const std::string kStatFilename{"/stat"};

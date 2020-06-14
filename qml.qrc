@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/CoreUtilizationDisplay.qml</file>
+        <file>qml/CPUUtilizationDisplay.qml</file>
+        <file>qml/KernelDisplay.qml</file>
+        <file>qml/main.qml</file>
+        <file>qml/MemoryDisplay.qml</file>
+        <file>qml/OSDisplay.qml</file>
+        <file>qml/RunningProcessesDisplay.qml</file>
+        <file>qml/SwapDisplay.qml</file>
+        <file>qml/TextWithPercentageProgressBar.qml</file>
+        <file>qml/TotalProcessesDisplay.qml</file>
+        <file>qml/UpTimeDisplay.qml</file>
+        <file>qml/MemoryProgressBar.qml</file>
+        <file>qml/SystemInformationDisplay.qml</file>
+        <file>qml/ProcessDisplay.qml</file>
+    </qresource>
+</RCC>

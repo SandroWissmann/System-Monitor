@@ -2,6 +2,6 @@ monitor
 a.out
 settings.json
 *.o
-build/*
 *.json
+build/*
 report.txt

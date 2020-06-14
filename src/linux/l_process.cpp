@@ -1,7 +1,7 @@
-#include "../linux/process.h"
+#include "../../include/linux/l_process.h"
 
-#include "helper.h"
-#include "parser.h"
+#include "../../include/helper.h"
+#include "../../include/parser.h"
 
 #include <unistd.h>
 
@@ -10,7 +10,7 @@
 #include <sstream>
 #include <string>
 
-namespace Linux {
+namespace Sysmon::Linux {
 
 const std::string kProcDirectory{"/proc/"};
 const std::string kStatFilename{"/stat"};

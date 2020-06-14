@@ -1,6 +1,8 @@
-#include "processor.h"
+#include "../include/processor.h"
 
-#include "linux/processor.h"
+#include "include/linux/l_processor.h"
+
+namespace Sysmon{
 
 std::shared_ptr<Processor> Processor::makeProcessor() {
 #ifdef __linux__
@@ -8,4 +10,6 @@ std::shared_ptr<Processor> Processor::makeProcessor() {
     return std::move(std::make_unique<Linux::Processor>(processor));
 #elif _WIN32
 #endif
+}
+
 }

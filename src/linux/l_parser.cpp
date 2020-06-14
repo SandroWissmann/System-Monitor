@@ -1,5 +1,5 @@
-#include "parser.h"
-#include "../helper.h"
+#include "../../include/parser.h"
+#include "../../include/helper.h"
 
 #include <unistd.h>
 
@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 
-namespace Linux::Parser {
+namespace Sysmon::Linux::Parser {
 
 const std::string kOSPath{"/etc/os-release"};
 const std::string kProcDirectory{"/proc/"};

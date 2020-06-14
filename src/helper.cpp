@@ -1,4 +1,4 @@
-#include "helper.h"
+#include "../include/helper.h"
 
 #include <fstream>
 #include <iostream>
@@ -7,7 +7,7 @@
 #include <string>
 #include <type_traits>
 
-namespace Helper {
+namespace Sysmon::Helper {
 
 template <typename ValueType>
 ValueType ReadValueFromFile(const std::string& filename,
