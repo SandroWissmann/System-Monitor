@@ -45,7 +45,7 @@ Item {
                 model: tableView.columns
                 Label {
                     width: tableView.columnWidthProvider(modelData)
-                    height: 35
+                    height: 20
                     text: processTableModel.headerData(modelData, Qt.Horizontal)
                     color: "green"
                     verticalAlignment: Text.AlignVCenter
@@ -54,7 +54,5 @@ Item {
                 }
             }
         }
-
-        ScrollIndicator.horizontal: ScrollIndicator { }
     }
 }
