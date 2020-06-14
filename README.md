@@ -9,8 +9,7 @@
 * Displays both "system" and "kernel" version
 * Displays "system" uptime
 
-Currently the application runs only on Linux with NCurses. 
-I plan to also add Windows Support and change the UI to QT with QML/Javascript
+Currently application runs only with linux. I plan to add windows support later.
 
 ## Dependencies for Running Locally
 
