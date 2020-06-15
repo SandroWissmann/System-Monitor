@@ -5,6 +5,8 @@ import com.sysmon 1.0
 Item {
     id: root
 
+    readonly property int systemHeight:
+        (8 + sysinfo.coreUtilizationsInPercent.length) * elementHeight
     readonly property int elementWidth: root.width
     readonly property int elementHeight: 20
     property int fontSize: elementHeight - 8
