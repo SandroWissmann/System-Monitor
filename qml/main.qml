@@ -1,6 +1,4 @@
 import QtQuick 2.15
-//import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.12
 import QtQuick.Window 2.15
 import com.sysmon 1.0
 
@@ -12,21 +10,21 @@ Window {
     height: 480
     title: qsTr("System Monitor")
 
-    ColumnLayout{
+    Column{
 
         SystemInformationDisplay{
             id: systemInformationDisplay
 
-            Layout.preferredHeight: systemInformationDisplay.systemHeight
-            Layout.preferredWidth: root.width
+            width: root.width
         }
 
         ProcessDisplay{
+            anchors.top: systemInformationDisplay.bottom
+
             id: processDisplay
 
-            Layout.preferredHeight: root.height -
-                                    systemInformationDisplay.height;
-            Layout.preferredWidth: root.width
+            width: root.width
+            height: root.height - systemInformationDisplay.height;
         }
     }
 }
