@@ -4,9 +4,9 @@ Item {
     id: root
     property double value: 0.0
 
-    property string progressBarColor: "black"
-    property string minMaxTextColor: "black"
-    property int fontSize: height - 6
+    required property string progressBarColor
+    required property string minMaxTextColor
+    required property int fontSize
 
     TextWithPercentageProgressBar{
         id: swapProgressBar

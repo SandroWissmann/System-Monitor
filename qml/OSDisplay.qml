@@ -3,8 +3,8 @@ import QtQuick 2.15
 Item {
     id: root
 
-    property string osName: ""
-    property int fontSize: height - 6
+    required property string osName
+    required property int fontSize
 
     Text{
         id: osText

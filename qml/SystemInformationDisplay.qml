@@ -104,7 +104,7 @@ Item {
             height: root.elementHeight
             fontSize: root.fontSize
 
-            countOfRunningProcesses: sysinfo.runningProcesses
+            runningProcessesCount: sysinfo.runningProcesses
         }
         UpTimeDisplay{
             id: upTimeDisplay

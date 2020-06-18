@@ -3,8 +3,8 @@ import QtQuick 2.15
 Item {
     id: root
 
-    property int upTimeInSeconds: 0
-    property int fontSize: height - 6
+    required property int upTimeInSeconds
+    required property int fontSize
 
     Text{
         font.pointSize: root.fontSize
