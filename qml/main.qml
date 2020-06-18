@@ -10,21 +10,18 @@ Window {
     height: 480
     title: qsTr("System Monitor")
 
-    Column{
+    SystemInformationDisplay{
+        id: systemInformationDisplay
 
-        SystemInformationDisplay{
-            id: systemInformationDisplay
+        width: root.width
+    }
 
-            width: root.width
-        }
+    ProcessDisplay{
+        anchors.top: systemInformationDisplay.bottom
 
-        ProcessDisplay{
-            anchors.top: systemInformationDisplay.bottom
+        id: processDisplay
 
-            id: processDisplay
-
-            width: root.width
-            height: root.height - systemInformationDisplay.height;
-        }
+        width: root.width
+        height: root.height - systemInformationDisplay.height;
     }
 }
