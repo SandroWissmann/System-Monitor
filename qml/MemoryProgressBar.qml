@@ -1,14 +1,14 @@
 import QtQuick 2.15
 
 Item {
-    property double nonCachedNonBufferValue: 0.0
-    property double bufferValue: 0.0
-    property double cachedValue: 0.0
+    required property double nonCachedNonBufferValue
+    required property double bufferValue
+    required property double cachedValue
 
-    property string nonCachedNonBufferColor: "#3399FF"
-    property string bufferValueColor: "yellow"
-    property string cachedColor: "green"
-    property string emptyColor: "lightgray"
+    required property color nonCachedNonBufferColor
+    required property color bufferValueColor
+    required property color cachedColor
+    required property color emptyColor
 
     readonly property int itemBorderWidth: 2
 

@@ -3,19 +3,19 @@ import QtQuick 2.15
 Item {
     id: root;
 
-    property string minMaxTextColor: "blue"
+    required property double nonCachedNonBufferValue
+    required property double bufferValue
+    required property double cachedValue
+    required property double totalValue
 
-    property double nonCachedNonBufferValue: 0.0
-    property double bufferValue: 0.0
-    property double cachedValue: 0.0
-    property double totalValue: 0.0
+    required property color nonCachedNonBufferColor
+    required property color bufferValueColor
+    required property color cachedColor
+    required property color emptyColor
 
-    property string nonCachedNonBufferColor: "#3399FF"
-    property string bufferValueColor: "yellow"
-    property string cachedColor: "green"
-    property string emptyColor: "lightgray"
+    required property color minMaxTextColor
 
-    property int fontSize: height - 6
+    required property int fontSize
 
 
     Text{
