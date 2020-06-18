@@ -5,8 +5,8 @@ import QtQuick.Controls.Styles 1.4
 Item {
     id: root;
 
-    property string progressBarColor: "#3399FF" // blue
-    property string minMaxTextColor: "blue"
+    property color progressBarColor: "#3399FF" // blue
+    property color minMaxTextColor: "blue"
 
     property string textString: ""
     property double value: 0.0
