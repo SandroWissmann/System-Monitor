@@ -7,8 +7,8 @@ Item {
 
     property int core: 1
 
-    property string progressBarColor: "black"
-    property string minMaxTextColor: "black"
+    property color progressBarColor: "black"
+    property color minMaxTextColor: "black"
     property int fontSize: height - 6
 
     TextWithPercentageProgressBar{
