@@ -4,9 +4,11 @@ Item {
     id: root
 
     required property int countOfProcesses
-    required property int fontSize
+    property alias fontSize: text.font.pointSize
 
     Text{
+        id: text
+
         font.pointSize: root.fontSize
 
         text: qsTr("Total Processes: " + parent.countOfProcesses)

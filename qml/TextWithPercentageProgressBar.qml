@@ -6,7 +6,7 @@ Item {
     id: root;
 
     property color progressBarColor: "#3399FF" // blue
-    property color minMaxTextColor: "blue"
+    property alias minMaxTextColor: minPercentageText.color
 
     property string textString: ""
     property double value: 0.0
@@ -31,7 +31,6 @@ Item {
         width: 25
 
         font.pointSize: parent.fontSize
-        color: parent.minMaxTextColor
 
         text: qsTr("0% ")
     }

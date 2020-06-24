@@ -4,12 +4,10 @@ Item {
     id: root
 
     required property string osName
-    required property int fontSize
+    property alias fontSize: osText.font.pointSize
 
     Text{
         id: osText
-
-        font.pointSize: root.fontSize
 
         text: qsTr("OS: " + root.osName)
     }

@@ -1,14 +1,14 @@
 import QtQuick 2.15
 
 Item {
-    required property double nonCachedNonBufferValue
-    required property double bufferValue
-    required property double cachedValue
+    required property int nonCachedNonBufferValue
+    required property int bufferValue
+    required property int cachedValue
 
-    required property color nonCachedNonBufferColor
-    required property color bufferValueColor
-    required property color cachedColor
-    required property color emptyColor
+    property alias nonCachedNonBufferColor: nonCachedNonBufferRectangle.color
+    property alias bufferValueColor: bufferRectangle.color
+    property alias cachedColor: cachedRectangle.color
+    property alias emptyColor: emptyRectangle.color
 
     readonly property int itemBorderWidth: 2
 
@@ -18,7 +18,6 @@ Item {
         height: parent.height
         width: calcCachedNonBufferRectangleWidth() + itemBorderWidth;
 
-        color: nonCachedNonBufferColor
         border.color: "black"
         border.width: itemBorderWidth
     }
@@ -31,7 +30,6 @@ Item {
         height: parent.height
         width: calcBufferValueRectangleWidth() + itemBorderWidth;
 
-        color: bufferValueColor
         border.color: "black"
         border.width: itemBorderWidth
     }
@@ -44,7 +42,6 @@ Item {
         height: parent.height
         width: calcCachedValueRectangleWidth() + itemBorderWidth;
 
-        color: cachedColor
         border.color: "black"
         border.width: itemBorderWidth
     }
@@ -57,7 +54,6 @@ Item {
         height: parent.height
         width: calcEmptyRectangleWidth() + 3 * itemBorderWidth;
 
-        color: emptyColor
         border.color: "black"
         border.width: itemBorderWidth
     }

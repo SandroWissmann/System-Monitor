@@ -4,10 +4,10 @@ Item {
     id: root
 
     required property int runningProcessesCount
-    required property int fontSize
+    property alias fontSize: text.font.pointSize
 
     Text{
-        font.pointSize: root.fontSize
+        id: text
 
         text: qsTr("Running Processes: " + root.runningProcessesCount)
     }

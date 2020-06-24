@@ -3,23 +3,18 @@ import QtQuick 2.15
 Item {
     id: root
 
-    property double value: 0.0
+    property alias value: utilizationProgressBar.value
 
-    property color progressBarColor: "black"
-    property color minMaxTextColor: "black"
-    property int fontSize: height - 6
+    property alias progressBarColor: utilizationProgressBar.progressBarColor
+    property alias minMaxTextColor: utilizationProgressBar.minMaxTextColor
+    property alias fontSize: utilizationProgressBar.fontSize
 
     TextWithPercentageProgressBar{
         id: utilizationProgressBar
-
-        progressBarColor: parent.progressBarColor
-        minMaxTextColor: parent.minMaxTextColor
 
         height: root.height
         width: root.width
 
         textString: qsTr("CPU: ")
-        value: root.value
-        fontSize: root.fontSize
     }
 }

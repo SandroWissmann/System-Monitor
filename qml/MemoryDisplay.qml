@@ -3,17 +3,17 @@ import QtQuick 2.15
 Item {
     id: root;
 
-    required property double nonCachedNonBufferValue
-    required property double bufferValue
-    required property double cachedValue
-    required property double totalValue
+    property alias nonCachedNonBufferValue: progressBar.nonCachedNonBufferValue
+    property alias bufferValue: progressBar.bufferValue
+    property alias cachedValue: progressBar.cachedValue
+    required property int totalValue
 
-    required property color nonCachedNonBufferColor
-    required property color bufferValueColor
-    required property color cachedColor
-    required property color emptyColor
+    property alias nonCachedNonBufferColor: progressBar.nonCachedNonBufferColor
+    property alias bufferValueColor: progressBar.bufferValueColor
+    property alias cachedColor: progressBar.cachedColor
+    property alias emptyColor: progressBar.emptyColor
 
-    required property color minMaxTextColor
+    property alias minMaxTextColor: maxPercentageText.color
 
     required property int fontSize
 
@@ -48,15 +48,6 @@ Item {
 
         implicitWidth: calcProgresBarWidth()
         implicitHeight: minPercentageText.height
-
-        nonCachedNonBufferValue: parent.nonCachedNonBufferValue
-        bufferValue: parent.bufferValue
-        cachedValue: parent.cachedValue
-
-        nonCachedNonBufferColor: parent.nonCachedNonBufferColor
-        bufferValueColor: parent.bufferValueColor
-        cachedColor: parent.cachedColor
-        emptyColor: parent.emptyColor
     }
 
     Text{
@@ -67,7 +58,6 @@ Item {
         width: 100
 
         font.pointSize: parent.fontSize
-        color: root.minMaxTextColor
 
         text: qsTr(parseFloat(totalValue).toFixed(1) + "/100.0% ")
     }

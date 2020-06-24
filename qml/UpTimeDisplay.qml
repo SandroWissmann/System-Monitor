@@ -4,10 +4,10 @@ Item {
     id: root
 
     required property int upTimeInSeconds
-    required property int fontSize
+    property alias fontSize: text.font.pointSize
 
     Text{
-        font.pointSize: root.fontSize
+        id: text
 
         text: qsTr("Up Time: " + elapsedTimeAsString(parent.upTimeInSeconds));
     }
