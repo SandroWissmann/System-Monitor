@@ -5,7 +5,9 @@ Item {
 
     property alias value: utilizationProgressBar.value
 
-    property int core: 1
+    required property int core
+
+    required property int index
 
     property alias progressBarColor: utilizationProgressBar.progressBarColor
     property alias minMaxTextColor: utilizationProgressBar.minMaxTextColor
