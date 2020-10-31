@@ -14,5 +14,7 @@
         <file>qml/system_information_display/elements/TotalProcessesDisplay.qml</file>
         <file>qml/system_information_display/elements/UpTimeDisplay.qml</file>
         <file>qml/system_information_display/SystemInformationDisplay.qml</file>
+        <file>qml/process_display/header_model/Cell.qml</file>
+        <file>qml/process_display/header_model/HeaderModel.qml</file>
     </qresource>
 </RCC>
