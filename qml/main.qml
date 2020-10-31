@@ -1,3 +1,4 @@
+
 /* System Monitor
  * Copyright (C) 2020  Sandro Wißmann
  *
@@ -20,6 +21,9 @@ import QtQuick 2.15
 import QtQuick.Window 2.15
 import com.sysmon 1.0
 
+import "system_information_display"
+import "process_display"
+
 Window {
     id: root
 
@@ -28,18 +32,18 @@ Window {
     height: 480
     title: qsTr("System Monitor")
 
-    SystemInformationDisplay{
+    SystemInformationDisplay {
         id: systemInformationDisplay
 
         width: root.width
     }
 
-    ProcessDisplay{
+    ProcessDisplay {
         anchors.top: systemInformationDisplay.bottom
 
         id: processDisplay
 
         width: root.width
-        height: root.height - systemInformationDisplay.height;
+        height: root.height - systemInformationDisplay.height
     }
 }

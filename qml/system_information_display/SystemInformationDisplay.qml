@@ -1,3 +1,4 @@
+
 /* System Monitor
  * Copyright (C) 2020  Sandro Wißmann
  *
@@ -20,6 +21,8 @@ import QtQuick 2.15
 
 import com.sysmon 1.0
 
+import "elements"
+
 Item {
     id: root
 
@@ -29,28 +32,28 @@ Item {
     readonly property int elementHeight: 20
     property int fontSize: elementHeight - 8
 
-    SystemInformation{
+    SystemInformation {
         id: sysinfo
     }
 
-    Column{
+    Column {
         id: displayColumn
 
-        OSDisplay{
+        OSDisplay {
             width: root.elementWidth
             height: root.elementHeight
             fontSize: root.fontSize
 
             osName: sysinfo.operatingSystem
         }
-        KernelDisplay{
+        KernelDisplay {
             width: root.elementWidth
             height: root.elementHeight
             fontSize: root.fontSize
 
             kernelName: sysinfo.kernel
         }
-        CPUUtilizationDisplay{
+        CPUUtilizationDisplay {
             width: root.elementWidth
             height: root.elementHeight
             fontSize: root.fontSize
@@ -60,10 +63,10 @@ Item {
 
             value: sysinfo.cpuUtilizationInPercent
         }
-        Repeater{
+        Repeater {
             model: sysinfo.coreUtilizationsInPercent.length
 
-            CoreUtilizationDisplay{
+            CoreUtilizationDisplay {
                 width: root.elementWidth
                 height: root.elementHeight
                 fontSize: root.fontSize
@@ -75,7 +78,7 @@ Item {
                 value: sysinfo.coreUtilizationsInPercent[index]
             }
         }
-        MemoryDisplay{
+        MemoryDisplay {
             id: memoryDisplay
 
             width: root.elementWidth
@@ -92,9 +95,8 @@ Item {
             bufferValue: sysinfo.buffersInPercent
             cachedValue: sysinfo.cachedMemoryInPercent
             totalValue: sysinfo.totalUsedMemoryInPercent
-
         }
-        SwapDisplay{
+        SwapDisplay {
             id: swapDisplay
 
             width: root.elementWidth
@@ -106,7 +108,7 @@ Item {
 
             value: sysinfo.swapInPercent
         }
-        TotalProcessesDisplay{
+        TotalProcessesDisplay {
             id: totalProcessesDisplay
 
             width: root.elementWidth
@@ -115,7 +117,7 @@ Item {
 
             countOfProcesses: sysinfo.totalProcesses
         }
-        RunningProcessesDisplay{
+        RunningProcessesDisplay {
             id: runningProcessesDisplay
 
             width: root.elementWidth
@@ -124,7 +126,7 @@ Item {
 
             runningProcessesCount: sysinfo.runningProcesses
         }
-        UpTimeDisplay{
+        UpTimeDisplay {
             id: upTimeDisplay
 
             width: root.elementWidth

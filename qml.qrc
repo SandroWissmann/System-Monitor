@@ -1,18 +1,18 @@
 <RCC>
     <qresource prefix="/">
-        <file>qml/CoreUtilizationDisplay.qml</file>
-        <file>qml/CPUUtilizationDisplay.qml</file>
-        <file>qml/KernelDisplay.qml</file>
         <file>qml/main.qml</file>
-        <file>qml/MemoryDisplay.qml</file>
-        <file>qml/OSDisplay.qml</file>
-        <file>qml/RunningProcessesDisplay.qml</file>
-        <file>qml/SwapDisplay.qml</file>
-        <file>qml/TextWithPercentageProgressBar.qml</file>
-        <file>qml/TotalProcessesDisplay.qml</file>
-        <file>qml/UpTimeDisplay.qml</file>
-        <file>qml/MemoryProgressBar.qml</file>
-        <file>qml/SystemInformationDisplay.qml</file>
-        <file>qml/ProcessDisplay.qml</file>
+        <file>qml/process_display/ProcessDisplay.qml</file>
+        <file>qml/system_information_display/elements/CoreUtilizationDisplay.qml</file>
+        <file>qml/system_information_display/elements/CPUUtilizationDisplay.qml</file>
+        <file>qml/system_information_display/elements/KernelDisplay.qml</file>
+        <file>qml/system_information_display/elements/MemoryDisplay.qml</file>
+        <file>qml/system_information_display/elements/MemoryProgressBar.qml</file>
+        <file>qml/system_information_display/elements/OSDisplay.qml</file>
+        <file>qml/system_information_display/elements/RunningProcessesDisplay.qml</file>
+        <file>qml/system_information_display/elements/SwapDisplay.qml</file>
+        <file>qml/system_information_display/elements/TextWithPercentageProgressBar.qml</file>
+        <file>qml/system_information_display/elements/TotalProcessesDisplay.qml</file>
+        <file>qml/system_information_display/elements/UpTimeDisplay.qml</file>
+        <file>qml/system_information_display/SystemInformationDisplay.qml</file>
     </qresource>
 </RCC>
